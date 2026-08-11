@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LI Group Staff Portal</title>
+<meta name="description" content="LI Group Staff Portal — daily submissions, operational forms, reports and resources.">
+<style>
+/* =====================================================================
+   LI GROUP STAFF PORTAL — STYLESHEET
+   -----------------------------------------------------------------
+   HOW TO EDIT COLOURS
+   All colours are defined once below in :root as CSS variables.
+   Change a value there and it updates everywhere on the site.
+   ===================================================================== */
+
+:root{
+  /* ---- EDIT COLOURS HERE ---- */
+  --navy:        #0F2A43;   /* header, nav, footer */
+  --navy-dark:   #0A1E32;
+  --orange:      #E8792B;   /* primary accent / priority buttons */
+  --orange-dark: #C86419;
+  --green:       #3C8A5B;   /* secondary accent (fresh food / success) */
+  --green-dark:  #2F6E48;
+  --bg:          #F6F7F5;   /* page background */
+  --card-bg:     #FFFFFF;
+  --ink:         #1B2430;   /* main text colour */
+  --ink-soft:    #5B6472;   /* secondary text */
+  --line:        #E2E5E0;
+  --focus:       #1D6FB8;
+  --radius:      12px;
+  --shadow:      0 2px 6px rgba(15,42,67,0.07);
+  --shadow-hover:0 10px 22px rgba(15,42,67,0.14);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  /* System font stack — no external font files to download, keeps the
+     site fast on mobile data. Change here if you later add a web font. */
+  font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%; display:block;}
+a{color:inherit;}
+:focus-visible{outline:3px solid var(--focus); outline-offset:2px;}
+.icon{width:24px; height:24px; flex-shrink:0;}
+
+.container{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 20px;
+}
+
+/* =========================================================
+   HEADER / NAVIGATION
+   ========================================================= */
+.site-header{
+  background:var(--navy);
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 1px 0 rgba(255,255,255,.06);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 20px;
+  max-width:1180px;
+  margin:0 auto;
+}
+.logo-link{display:flex; align-items:center; gap:10px; text-decoration:none;}
+.logo-link img{height:38px; width:auto;}
+
+.main-nav{display:flex; align-items:center;}
+.main-nav ul{
+  display:flex;
+  gap:4px;
+  list-style:none;
+  margin:0; padding:0;
+}
+.main-nav a{
+  display:block;
+  padding:10px 14px;
+  color:#E7ECF1;
+  text-decoration:none;
+  font-size:14.5px;
+  font-weight:600;
+  border-radius:8px;
+}
+.main-nav a:hover, .main-nav a:focus-visible{background:rgba(255,255,255,.09); color:#fff;}
+
+.nav-toggle{
+  display:none;
+  background:none;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+  padding:6px;
+}
+.nav-toggle .icon{width:28px; height:28px;}
+.nav-toggle .icon-close{display:none;}
+.nav-toggle[aria-expanded="true"] .icon-menu{display:none;}
+.nav-toggle[aria-expanded="true"] .icon-close{display:block;}
+
+@media (max-width:820px){
+  .nav-toggle{display:block;}
+  .main-nav{
+    position:absolute;
+    top:100%; left:0; right:0;
+    background:var(--navy-dark);
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+  }
+  .main-nav.open{max-height:420px;}
+  .main-nav ul{flex-direction:column; padding:8px 12px 16px; gap:2px;}
+  .main-nav a{padding:12px 14px;}
+}
+
+/* =========================================================
+   HERO / WELCOME
+   ========================================================= */
+.hero{
+  background:linear-gradient(135deg, var(--navy) 0%, #163C5E 100%);
+  color:#fff;
+  padding:38px 0 30px;
+}
+.hero h1{
+  font-size:clamp(24px,3.6vw,34px);
+  margin:0 0 8px;
+  font-weight:800;
+  letter-spacing:-.01em;
+}
+.hero p{
+  margin:0;
+  max-width:60ch;
+  color:#C9D6E2;
+  font-size:15.5px;
+}
+
+/* =========================================================
+   PRIORITY ACTION BUTTONS (top 4)
+   ========================================================= */
+.priority-section{padding:26px 0 8px;}
+.priority-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-top:-46px; /* overlaps slightly into hero for a modern layered look */
+  position:relative;
+  z-index:2;
+}
+@media (max-width:900px){
+  .priority-grid{grid-template-columns:repeat(2,1fr); margin-top:-30px;}
+}
+@media (max-width:520px){
+  .priority-grid{grid-template-columns:1fr; margin-top:-20px;}
+}
+
+.priority-card{
+  background:var(--card-bg);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-hover);
+  padding:20px 18px;
+  text-decoration:none;
+  color:var(--ink);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  border-top:4px solid var(--orange);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.priority-card:nth-child(2){border-top-color:var(--green);}
+.priority-card:nth-child(3){border-top-color:var(--navy);}
+.priority-card:nth-child(4){border-top-color:var(--orange-dark);}
+.priority-card:hover, .priority-card:focus-visible{
+  transform:translateY(-4px);
+  box-shadow:0 16px 30px rgba(15,42,67,.2);
+}
+.priority-card .icon-wrap{
+  width:44px; height:44px;
+  border-radius:10px;
+  background:#FDF0E6;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--orange);
+}
+.priority-card:nth-child(2) .icon-wrap{background:#E9F4EE; color:var(--green);}
+.priority-card:nth-child(3) .icon-wrap{background:#EAF0F6; color:var(--navy);}
+.priority-card:nth-child(4) .icon-wrap{background:#FDF0E6; color:var(--orange-dark);}
+.priority-card .title{font-size:16.5px; font-weight:700;}
+.priority-card .desc{font-size:13px; color:var(--ink-soft); margin:0;}
+
+/* =========================================================
+   ANNOUNCEMENTS STRIP
+   ========================================================= */
+.announcements{
+  background:#FFF6EC;
+  border:1px solid #F3D9B8;
+  border-radius:var(--radius);
+  margin:30px 0;
+  padding:16px 20px;
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+}
+.announcements .icon-wrap{
+  width:36px; height:36px; flex-shrink:0;
+  background:var(--orange);
+  color:#fff;
+  border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+}
+.announcements h2{
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  margin:0 0 6px;
+  color:var(--orange-dark);
+}
+/* ---- EDIT ANNOUNCEMENTS HERE ----
+   Each announcement is one <li> inside #announcement-list in index.html.
+   Add, edit or delete <li> lines there — no need to touch this CSS file. */
+.announcements ul{margin:0; padding-left:18px; font-size:14px;}
+.announcements li{margin-bottom:4px;}
+.announcements li:last-child{margin-bottom:0;}
+
+/* =========================================================
+   SECTION GROUPS (Uploads / Operational Forms / Reports / External)
+   ========================================================= */
+.section-block{padding:30px 0;}
+.section-block h2{
+  font-size:20px;
+  font-weight:800;
+  margin:0 0 4px;
+  color:var(--navy);
+}
+.section-block .section-sub{
+  color:var(--ink-soft);
+  font-size:13.5px;
+  margin:0 0 18px;
+}
+
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:14px;
+}
+.link-card{
+  background:var(--card-bg);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:var(--ink);
+  font-weight:600;
+  font-size:14.5px;
+  transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+.link-card:hover, .link-card:focus-visible{
+  border-color:var(--orange);
+  box-shadow:var(--shadow);
+  transform:translateY(-2px);
+}
+.link-card .icon-wrap{
+  width:38px; height:38px; flex-shrink:0;
+  border-radius:8px;
+  background:#EEF2F5;
+  color:var(--navy);
+  display:flex; align-items:center; justify-content:center;
+}
+.link-card .ext-mark{
+  margin-left:auto;
+  font-size:11px;
+  color:var(--ink-soft);
+  font-weight:500;
+  white-space:nowrap;
+}
+.link-card.is-disabled{
+  cursor:default;
+  opacity:.55;
+  pointer-events:none;
+}
+.link-card.is-disabled .ext-mark{
+  color:var(--orange-dark);
+  font-weight:700;
+}
+
+.section-block.alt{background:#FFFFFF;}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer{
+  background:var(--navy);
+  color:#B9C4D0;
+  padding:28px 0;
+  margin-top:20px;
+  font-size:13px;
+}
+.footer-inner{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:14px;
+}
+.site-footer a{color:#fff; text-decoration:underline;}
+.site-footer .helpdesk{font-weight:600; color:#fff;}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  .priority-card, .link-card{transition:none;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     HEADER / TOP NAVIGATION
+     To change menu items: edit the <li><a> lines inside <nav id="main-nav">
+========================================================= -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-link" href="#top">
+      <!-- LOGO_IMAGE_PLACEHOLDER: replace assets/logo-placeholder.svg with your real logo file -->
+      <img src="data:image/svg+xml;base64,PCEtLSBQTEFDRUhPTERFUiBMT0dPIOKAlCByZXBsYWNlIHRoaXMgZmlsZSB3aXRoIHlvdXIgcmVhbCBMSSBHcm91cCBsb2dvLgogICAgIEtlZXAgdGhlIGZpbGVuYW1lICJsb2dvLXBsYWNlaG9sZGVyLnN2ZyIgT1IgdXBkYXRlIHRoZSBzcmMgaW4gaW5kZXguaHRtbAogICAgIChzZWFyY2ggZm9yIExPR09fSU1BR0VfUExBQ0VIT0xERVIgaW4gaW5kZXguaHRtbCkgdG8gcG9pbnQgYXQgeW91ciBuZXcgZmlsZS4gLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjQ0IiB2aWV3Qm94PSIwIDAgMTYwIDQ0Ij4KICA8cmVjdCB4PSIwIiB5PSIyIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI4IiBmaWxsPSIjRTg3OTJCIi8+CiAgPHRleHQgeD0iMjAiIHk9IjI5IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxJPC90ZXh0PgogIDx0ZXh0IHg9IjUwIiB5PSIyNyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE3IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMEYyQTQzIj5MSSBHUk9VUDwvdGV4dD4KPC9zdmc+Cg==" alt="LI Group logo" width="160" height="44">
+    </a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+      <img class="icon icon-menu" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik0zIDZoMThNMyAxMmgxOE0zIDE4aDE4Ii8+Cjwvc3ZnPgo=" alt="">
+      <img class="icon icon-close" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik02IDZsMTIgMTJNMTggNkw2IDE4Ii8+Cjwvc3ZnPgo=" alt="">
+    </button>
+
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#top">Home</a></li>
+        <li><a href="#daily-submissions">Daily Submissions</a></li>
+        <li><a href="#operational-forms">Operational Forms</a></li>
+        <li><a href="#reports">Reports</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#helpdesk">Helpdesk</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- =========================================================
+     HERO / WELCOME MESSAGE
+     Edit the heading and welcome paragraph below.
+========================================================= -->
+<section class="hero" id="top">
+  <div class="container">
+    <h1>LI Group Staff Portal</h1>
+    <p><!-- EDIT WELCOME MESSAGE HERE -->
+      Welcome. This is the central place to submit daily forms, open reports and reach
+      company resources — from any store, on any device.
+    </p>
+  </div>
+</section>
+
+<!-- =========================================================
+     PRIORITY BUTTONS — the 4 most-used daily actions
+     To add or change a button: copy one <a class="priority-card"> block,
+     edit its icon, title, description and href.
+     Replace the placeholder hrefs below with your real Microsoft Forms /
+     SharePoint / Power Automate links.
+========================================================= -->
+<section class="priority-section" id="daily-submissions">
+  <div class="container">
+    <div class="priority-grid">
+
+      <a class="priority-card" href="https://forms.office.com/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UMlI2U1o3V0pZVjlYTk1FSUpJNjVVNFVNTy4u">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik02IDJoOWwzIDN2MTdINnoiLz48cGF0aCBkPSJNMTUgMnYzaDMiLz48cGF0aCBkPSJNOSAxMmg2TTkgMTZoNk05IDhoMyIvPgo8L3N2Zz4K" alt=""></span>
+        <span class="title">Invoice Upload</span>
+        <p class="desc">Submit supplier invoices.</p>
+      </a>
+
+      <a class="priority-card is-disabled" href="#" aria-disabled="true">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxyZWN0IHg9IjIiIHk9IjYiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMiIgcng9IjIiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIzIi8+PHBhdGggZD0iTTYgNlY0aDEydjIiLz4KPC9zdmc+Cg==" alt=""></span>
+        <span class="title">Cash-up Reports</span>
+        <p class="desc">Link pending &mdash; coming soon.</p>
+      </a>
+
+      <a class="priority-card" href="https://forms.office.com/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UNzY0WVFFVTJDR1BPWjM1VkFFTElVUTZHWC4u">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxyZWN0IHg9IjMiIHk9IjciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxMyIgcng9IjIiLz48cGF0aCBkPSJNNyA3VjVhMiAyIDAgMCAxIDItMmg2YTIgMiAwIDAgMSAyIDJ2MiIvPjxwYXRoIGQ9Ik0zIDEyaDE4Ii8+Cjwvc3ZnPgo=" alt=""></span>
+        <span class="title">Till Pay-outs</span>
+        <p class="desc">Record and submit till pay-outs.</p>
+      </a>
+
+      <a class="priority-card" href="https://forms.office.com/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UN05QNTdWRkc0MzBYUFBHUUJZMVVTQzVOMy4u">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik0zIDIxVjEwbDUgM1YxMGw1IDNWOGw1IDN2MTB6Ii8+PHBhdGggZD0iTTMgMjFoMTgiLz4KPC9zdmc+Cg==" alt=""></span>
+        <span class="title">Daily Production Sheets</span>
+        <p class="desc">Submit daily production information.</p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <!-- =====================================================
+       ANNOUNCEMENTS
+       To add/change/remove a notice: edit the <li> lines below.
+  ====================================================== -->
+  <section class="announcements" aria-labelledby="announce-h">
+    <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik0zIDEwdjRsNSAxVjl6Ii8+PHBhdGggZD0iTTggOWwxMC00djE0TDggMTUiLz48cGF0aCBkPSJNNiAxNWwxLjUgNSIvPgo8L3N2Zz4K" alt=""></span>
+    <div>
+      <h2 id="announce-h">Announcements</h2>
+      <ul id="announcement-list">
+        <!-- EDIT ANNOUNCEMENTS HERE — one <li> per notice -->
+        <li>Month-end cash-up submissions close Friday at 17:00.</li>
+        <li>Updated Leave Application forms are now live — see Operational Forms below.</li>
+        <li>Cold-chain temperature readings are now required twice daily.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- =========================================================
+     UPLOADS
+========================================================= -->
+<section class="section-block" id="uploads">
+  <div class="container">
+    <h2>Uploads</h2>
+    <p class="section-sub">Submit day-to-day documents and observations.</p>
+    <div class="card-grid">
+      <a class="link-card" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UME1XTDNMNDQwTDBCSkFQQ0c3OVdMQkM4Uy4u">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik0xMiAxNlY0Ii8+PHBhdGggZD0iTTcgOWw1LTUgNSA1Ii8+PHBhdGggZD0iTTQgMTZ2M2EyIDIgMCAwIDAgMiAyaDEyYTIgMiAwIDAgMCAyLTJ2LTMiLz4KPC9zdmc+Cg==" alt=""></span>
+        No Stock Invoices Upload
+      </a>
+      <a class="link-card is-disabled" href="#" aria-disabled="true">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxyZWN0IHg9IjIiIHk9IjYiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMiIgcng9IjIiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIzIi8+PHBhdGggZD0iTTYgNlY0aDEydjIiLz4KPC9zdmc+Cg==" alt=""></span>
+        Cash-up Reports
+        <span class="ext-mark">coming soon</span>
+      </a>
+      <a class="link-card" href="https://forms.office.com/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UNDJLODZGUzZOQ1RaV0c4TFA2RzkzRE9ZNy4u">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik0xMiAxNlY0Ii8+PHBhdGggZD0iTTcgOWw1LTUgNSA1Ii8+PHBhdGggZD0iTTQgMTZ2M2EyIDIgMCAwIDAgMiAyaDEyYTIgMiAwIDAgMCAyLTJ2LTMiLz4KPC9zdmc+Cg==" alt=""></span>
+        Temperature Readings
+      </a>
+      <a class="link-card" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UNzAzMlJNRDdLSE04VzRJMDZUNFVUQ1RTUS4u">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxyZWN0IHg9IjUiIHk9IjIiIHdpZHRoPSIxNCIgaGVpZ2h0PSIyMCIgcng9IjIiLz48cGF0aCBkPSJNOSA3aDZNOSAxMWg2TTkgMTVoNCIvPgo8L3N2Zz4K" alt=""></span>
+        Overtime &amp; Leave Forms
+      </a>
+      <a class="link-card" href="https://forms.office.com/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UQTFJWTlTV0hNVDZRRDFETjYxSUU1UlVDQS4u">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxyZWN0IHg9IjUiIHk9IjIiIHdpZHRoPSIxNCIgaGVpZ2h0PSIyMCIgcng9IjIiLz48cGF0aCBkPSJNOSA3aDZNOSAxMWg2TTkgMTVoNCIvPgo8L3N2Zz4K" alt=""></span>
+        Disciplinary Actions
+      </a>
+      <a class="link-card" href="https://forms.office.com/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UOVpRQUVSTEtEVjNTNEFLUTdCM0FTVFQ4Uy4u">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik0xMiAxNlY0Ii8+PHBhdGggZD0iTTcgOWw1LTUgNSA1Ii8+PHBhdGggZD0iTTQgMTZ2M2EyIDIgMCAwIDAgMiAyaDEyYTIgMiAwIDAgMCAyLTJ2LTMiLz4KPC9zdmc+Cg==" alt=""></span>
+        Expiry Date Observation Forms
+      </a>
+      <a class="link-card" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UODdRWjRYVUdMWFZWWkVVMThWUDFSR1VUQS4u">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik0xMiAxNlY0Ii8+PHBhdGggZD0iTTcgOWw1LTUgNSA1Ii8+PHBhdGggZD0iTTQgMTZ2M2EyIDIgMCAwIDAgMiAyaDEyYTIgMiAwIDAgMCAyLTJ2LTMiLz4KPC9zdmc+Cg==" alt=""></span>
+        Claims Upload
+      </a>
+      <a class="link-card" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UQjNYNjNJTUtMMTdQU0hTNVQzQjhUUDlWRi4u">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik00IDRoMTNsMyAzdjEzSDR6Ii8+PHBhdGggZD0iTTggOWg5TTggMTNoOU04IDE3aDYiLz4KPC9zdmc+Cg==" alt=""></span>
+        Minutes Upload
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     OPERATIONAL FORMS
+========================================================= -->
+<section class="section-block alt" id="operational-forms">
+  <div class="container">
+    <h2>Operational Forms</h2>
+    <p class="section-sub">Standard forms used across stores.</p>
+    <div class="card-grid">
+      <a class="link-card" href="https://drive.google.com/file/d/1XrLUsBFkDXlyY9LyKfAFxy5e0sgAAdzh/view">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxyZWN0IHg9IjUiIHk9IjIiIHdpZHRoPSIxNCIgaGVpZ2h0PSIyMCIgcng9IjIiLz48cGF0aCBkPSJNOSA3aDZNOSAxMWg2TTkgMTVoNCIvPgo8L3N2Zz4K" alt=""></span>
+        Payout Reconciliation Sheet
+      </a>
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1sM3ER9sc87sGxK67ZAfV1_ZrgW25FTMI?rtpof=true&usp=drive_fs">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxyZWN0IHg9IjUiIHk9IjIiIHdpZHRoPSIxNCIgaGVpZ2h0PSIyMCIgcng9IjIiLz48cGF0aCBkPSJNOSA3aDZNOSAxMWg2TTkgMTVoNCIvPgo8L3N2Zz4K" alt=""></span>
+        Cashier Count Sheet
+      </a>
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1s81KQMzmSXRTcbJg3eOxfT2Pixjikzoy?rtpof=true&usp=drive_fs">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxyZWN0IHg9IjUiIHk9IjIiIHdpZHRoPSIxNCIgaGVpZ2h0PSIyMCIgcng9IjIiLz48cGF0aCBkPSJNOSA3aDZNOSAxMWg2TTkgMTVoNCIvPgo8L3N2Zz4K" alt=""></span>
+        Overtime Request Form
+      </a>
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1rwUpCDQtwZOnCFVIkqJ-qHApMgwZJ2KO?rtpof=true&usp=drive_fs">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxyZWN0IHg9IjUiIHk9IjIiIHdpZHRoPSIxNCIgaGVpZ2h0PSIyMCIgcng9IjIiLz48cGF0aCBkPSJNOSA3aDZNOSAxMWg2TTkgMTVoNCIvPgo8L3N2Zz4K" alt=""></span>
+        Leave Application Form – LI Group
+      </a>
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/10W5Qx1m8hNuYgB2frq6Wf-LmJN3NvO5j/edit?rtpof=true&usp=drive_fs">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxyZWN0IHg9IjUiIHk9IjIiIHdpZHRoPSIxNCIgaGVpZ2h0PSIyMCIgcng9IjIiLz48cGF0aCBkPSJNOSA3aDZNOSAxMWg2TTkgMTVoNCIvPgo8L3N2Zz4K" alt=""></span>
+        Leave Application Form – VI
+      </a>
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1PZEdk5-FEzm-aK_4ntdUy7smKfOe9URT/edit?rtpof=true&usp=drive_fs">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxyZWN0IHg9IjUiIHk9IjIiIHdpZHRoPSIxNCIgaGVpZ2h0PSIyMCIgcng9IjIiLz48cGF0aCBkPSJNOSA3aDZNOSAxMWg2TTkgMTVoNCIvPgo8L3N2Zz4K" alt=""></span>
+        Expiry Date Sheets
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     REPORTS & RESOURCES
+========================================================= -->
+<section class="section-block" id="reports">
+  <div class="container">
+    <h2>Reports &amp; Resources</h2>
+    <p class="section-sub">Company documents, dashboards and reference material.</p>
+    <div class="card-grid" id="resources">
+      <a class="link-card" href="https://app.powerbi.com/view?r=eyJrIjoiY2Q5NjA3NzgtYjY1NS00ZjE0LWJkMDktMzA4NTIyNTNiZjViIiwidCI6ImZlYzQ4MWE4LWVhZGMtNDkzMi1hMzIzLTlhYzUwYWQyMWNmZiJ9&pageName=10ad80ab79a0d1d7e196">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxyZWN0IHg9IjMiIHk9IjQiIHdpZHRoPSIxOCIgaGVpZ2h0PSI0IiByeD0iMSIvPjxwYXRoIGQ9Ik01IDh2MTFhMiAyIDAgMCAwIDIgMmgxMGEyIDIgMCAwIDAgMi0yVjgiLz48cGF0aCBkPSJNMTAgMTJoNCIvPgo8L3N2Zz4K" alt=""></span>
+        Invoice Archive
+      </a>
+      <a class="link-card is-disabled" href="#" aria-disabled="true">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjkiLz48cGF0aCBkPSJNMTIgM3Y5bDYgMyIvPgo8L3N2Zz4K" alt=""></span>
+        Power BI Reports
+        <span class="ext-mark">coming soon</span>
+      </a>
+      <a class="link-card is-disabled" href="#" aria-disabled="true">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik00IDRoMTNsMyAzdjEzSDR6Ii8+PHBhdGggZD0iTTggOWg5TTggMTNoOU04IDE3aDYiLz4KPC9zdmc+Cg==" alt=""></span>
+        Company Policies
+        <span class="ext-mark">coming soon</span>
+      </a>
+      <a class="link-card is-disabled" href="#" aria-disabled="true">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik0yIDlsMTAtNSAxMCA1LTEwIDV6Ii8+PHBhdGggZD0iTTYgMTF2NWMwIDEuNyAyLjcgMyA2IDNzNi0xLjMgNi0zdi01Ii8+Cjwvc3ZnPgo=" alt=""></span>
+        Staff Training Documents
+        <span class="ext-mark">coming soon</span>
+      </a>
+      <a class="link-card is-disabled" href="#" aria-disabled="true">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik00IDRoMTNsMyAzdjEzSDR6Ii8+PHBhdGggZD0iTTggOWg5TTggMTNoOU04IDE3aDYiLz4KPC9zdmc+Cg==" alt=""></span>
+        Operational Procedures
+        <span class="ext-mark">coming soon</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     EXTERNAL SERVICES
+========================================================= -->
+<section class="section-block alt" id="helpdesk">
+  <div class="container">
+    <h2>External Services</h2>
+    <p class="section-sub">These require your own sign-in.</p>
+    <div class="card-grid">
+      <a class="link-card is-disabled" href="#" aria-disabled="true">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik00IDEzYTggOCAwIDAgMSAxNiAwIi8+PHJlY3QgeD0iMiIgeT0iMTMiIHdpZHRoPSI1IiBoZWlnaHQ9IjciIHJ4PSIyIi8+PHJlY3QgeD0iMTciIHk9IjEzIiB3aWR0aD0iNSIgaGVpZ2h0PSI3IiByeD0iMiIvPgo8L3N2Zz4K" alt=""></span>
+        Helpdesk
+        <span class="ext-mark">coming soon</span>
+      </a>
+      <a class="link-card is-disabled" href="#" aria-disabled="true">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik0xNCAzaDd2NyIvPjxwYXRoIGQ9Ik0yMSAzbC05IDkiLz48cGF0aCBkPSJNNSA1aDZ2MEg1YTIgMiAwIDAgMC0yIDJ2MTJhMiAyIDAgMCAwIDIgMmgxMmEyIDIgMCAwIDAgMi0ydi02Ii8+Cjwvc3ZnPgo=" alt=""></span>
+        Sage Accounting
+        <span class="ext-mark">coming soon</span>
+      </a>
+      <a class="link-card is-disabled" href="#" aria-disabled="true">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik0zIDEwbDktNiA5IDYiLz48cGF0aCBkPSJNNCAxMHY5TTkgMTB2OU0xNSAxMHY5TTIwIDEwdjkiLz48cGF0aCBkPSJNMiAyMWgyMCIvPgo8L3N2Zz4K" alt=""></span>
+        FNB Namibia
+        <span class="ext-mark">coming soon</span>
+      </a>
+      <a class="link-card is-disabled" href="#" aria-disabled="true">
+        <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik0zIDEwbDktNiA5IDYiLz48cGF0aCBkPSJNNCAxMHY5TTkgMTB2OU0xNSAxMHY5TTIwIDEwdjkiLz48cGF0aCBkPSJNMiAyMWgyMCIvPgo8L3N2Zz4K" alt=""></span>
+        Standard Bank Namibia
+        <span class="ext-mark">coming soon</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+     Edit the year, company name and helpdesk contact below.
+========================================================= -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div><!-- EDIT COPYRIGHT TEXT HERE -->&copy; <span id="year"></span> LI Group. All rights reserved.</div>
+    <div>Helpdesk contact details coming soon</div>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+/* =====================================================================
+   LI GROUP STAFF PORTAL — SCRIPT
+   Minimal, dependency-free JavaScript. No tracking, no external calls.
+   ===================================================================== */
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* ---- Mobile hamburger menu ---- */
+  var toggle = document.getElementById('nav-toggle');
+  var nav = document.getElementById('main-nav');
+
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      var isOpen = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    /* Close the menu automatically once a link is tapped (mobile only) */
+    nav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* Note: links now open in the same tab (no target="_blank" forced). */
+
+});
+
+</script>
+</body>
+</html>
