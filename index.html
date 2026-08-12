@@ -28,8 +28,8 @@
         <li><a href="reports.html">Reports</a></li>
         <li><a href="reports.html#resources">Resources</a></li>
         <li><a href="helpdesk.html">Helpdesk</a></li>
-        <li><a href="directors.html">Directors</a></li>
-        <li><a href="hr.html">HR</a></li>
+        <li class="role-gated" data-role="directors" style="display:none;"><a href="directors.html">Directors</a></li>
+        <li class="role-gated" data-role="hr,directors" style="display:none;"><a href="hr.html">HR</a></li>
       </ul>
     </nav>
   </div>
@@ -125,6 +125,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+</script>
+
+<script>
+(function(){
+  fetch('/.auth/me').then(function(r){ return r.json(); }).then(function(data){
+    var principal = data && data.clientPrincipal;
+    var roles = (principal && principal.userRoles) || [];
+    document.querySelectorAll('.role-gated').forEach(function(el){
+      var needed = el.getAttribute('data-role').split(',');
+      var ok = needed.some(function(role){ return roles.indexOf(role) !== -1; });
+      el.style.display = ok ? '' : 'none';
+    });
+  }).catch(function(){ /* auth endpoint unavailable locally; nav items stay hidden */ });
+})();
 </script>
 </body>
 </html>

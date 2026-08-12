@@ -34,8 +34,8 @@
         <li><a href="reports.html">Reports</a></li>
         <li><a href="reports.html#resources">Resources</a></li>
         <li><a href="helpdesk.html">Helpdesk</a></li>
-        <li><a href="directors.html">Directors</a></li>
-        <li><a href="hr.html">HR</a></li>
+        <li class="role-gated" data-role="directors" style="display:none;"><a href="directors.html">Directors</a></li>
+        <li class="role-gated" data-role="hr,directors" style="display:none;"><a href="hr.html">HR</a></li>
       </ul>
     </nav>
   </div>
@@ -86,13 +86,16 @@
     <ul class="source-list">
       <li><a href="https://desk.zoho.com/agent/lihelpdesk/all/tickets/list/open-cases" target="_blank" rel="noopener noreferrer">Helpdesk</a></li>
       <li><a href="https://accounting.sageone.co.za/Landing/Default.aspx" target="_blank" rel="noopener noreferrer">Sage Accounting</a></li>
-      <li><a href="https://www.fnbnamibia.com.na/" target="_blank" rel="noopener noreferrer">FNB Namibia</a></li>
-      <li><a href="https://ibanking.standardbank.com.na/#/login" target="_blank" rel="noopener noreferrer">Standard Bank Namibia</a></li>
-      <li><a href="https://members.okfoods.co.za/" target="_blank" rel="noopener noreferrer">OK Claim Portal</a></li>
-      <li><a href="https://myssc.ssc.org.na/" target="_blank" rel="noopener noreferrer">SSC</a></li>
-      <li><a href="https://itas.namra.org.na/e-Portal/login" target="_blank" rel="noopener noreferrer">NAMRA</a></li>
       <li><a href="https://time-v2.bcity.me/1/login/" target="_blank" rel="noopener noreferrer">Binary City</a></li>
       <li><a href="https://account.ui.com/login" target="_blank" rel="noopener noreferrer">UI</a></li>
+      <li><a href="https://www.fnbnamibia.com.na/" target="_blank" rel="noopener noreferrer">FNB Namibia</a></li>
+      <li><a href="https://ibanking.standardbank.com.na/#/login" target="_blank" rel="noopener noreferrer">Standard Bank Namibia</a></li>
+      <li><a href="https://myssc.ssc.org.na/" target="_blank" rel="noopener noreferrer">SSC</a></li>
+      <li><a href="https://itas.namra.org.na/e-Portal/login" target="_blank" rel="noopener noreferrer">NAMRA</a></li>
+      <li><a href="https://egp1.gov.na/" target="_blank" rel="noopener noreferrer">e-Procurement</a></li>
+      <li><a href="https://members.okfoods.co.za/" target="_blank" rel="noopener noreferrer">OK Claim Portal</a></li>
+      <li><a href="https://epaper.neweralive.na/" target="_blank" rel="noopener noreferrer">NewEra</a></li>
+      <li><a href="https://esubs.namibian.com.na/" target="_blank" rel="noopener noreferrer">The Namibian</a></li>
     </ul>
     <h2>HR (restricted)</h2>
     <ul class="source-list">
@@ -148,6 +151,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+</script>
+
+<script>
+(function(){
+  fetch('/.auth/me').then(function(r){ return r.json(); }).then(function(data){
+    var principal = data && data.clientPrincipal;
+    var roles = (principal && principal.userRoles) || [];
+    document.querySelectorAll('.role-gated').forEach(function(el){
+      var needed = el.getAttribute('data-role').split(',');
+      var ok = needed.some(function(role){ return roles.indexOf(role) !== -1; });
+      el.style.display = ok ? '' : 'none';
+    });
+  }).catch(function(){ /* auth endpoint unavailable locally; nav items stay hidden */ });
+})();
 </script>
 </body>
 </html>
