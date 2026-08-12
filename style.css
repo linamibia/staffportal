@@ -40,7 +40,7 @@ body{
 img{max-width:100%; display:block;}
 a{color:inherit;}
 :focus-visible{outline:3px solid var(--focus); outline-offset:2px;}
-.icon{width:18px; height:18px; flex-shrink:0;}
+.icon{width:24px; height:24px; flex-shrink:0;}
 
 .container{
   max-width:1180px;
@@ -121,7 +121,7 @@ a{color:inherit;}
 .hero{
   background:linear-gradient(135deg, var(--navy) 0%, #163C5E 100%);
   color:#fff;
-  padding:30px 0 22px;
+  padding:38px 0 30px;
 }
 .hero h1{
   font-size:clamp(24px,3.6vw,34px);
@@ -139,12 +139,12 @@ a{color:inherit;}
 /* =========================================================
    PRIORITY ACTION BUTTONS (top 4)
    ========================================================= */
-.priority-section{padding:20px 0 4px;}
+.priority-section{padding:26px 0 8px;}
 .priority-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-top:-40px; /* overlaps slightly into hero for a modern layered look */
+  gap:16px;
+  margin-top:-46px; /* overlaps slightly into hero for a modern layered look */
   position:relative;
   z-index:2;
 }
@@ -159,12 +159,12 @@ a{color:inherit;}
   background:var(--card-bg);
   border-radius:var(--radius);
   box-shadow:var(--shadow-hover);
-  padding:14px 16px;
+  padding:20px 18px;
   text-decoration:none;
   color:var(--ink);
   display:flex;
   flex-direction:column;
-  gap:7px;
+  gap:10px;
   border-top:4px solid var(--orange);
   transition:transform .15s ease, box-shadow .15s ease;
 }
@@ -176,8 +176,8 @@ a{color:inherit;}
   box-shadow:0 16px 30px rgba(15,42,67,.2);
 }
 .priority-card .icon-wrap{
-  width:34px; height:34px;
-  border-radius:8px;
+  width:44px; height:44px;
+  border-radius:10px;
   background:#FDF0E6;
   display:flex; align-items:center; justify-content:center;
   color:var(--orange);
@@ -185,8 +185,8 @@ a{color:inherit;}
 .priority-card:nth-child(2) .icon-wrap{background:#E9F4EE; color:var(--green);}
 .priority-card:nth-child(3) .icon-wrap{background:#EAF0F6; color:var(--navy);}
 .priority-card:nth-child(4) .icon-wrap{background:#FDF0E6; color:var(--orange-dark);}
-.priority-card .title{font-size:15px; font-weight:700;}
-.priority-card .desc{font-size:12px; color:var(--ink-soft); margin:0;}
+.priority-card .title{font-size:16.5px; font-weight:700;}
+.priority-card .desc{font-size:13px; color:var(--ink-soft); margin:0;}
 
 /* =========================================================
    ANNOUNCEMENTS STRIP
@@ -195,14 +195,14 @@ a{color:inherit;}
   background:#FFF6EC;
   border:1px solid #F3D9B8;
   border-radius:var(--radius);
-  margin:18px 0;
-  padding:12px 16px;
+  margin:30px 0;
+  padding:16px 20px;
   display:flex;
-  gap:10px;
+  gap:14px;
   align-items:flex-start;
 }
 .announcements .icon-wrap{
-  width:28px; height:28px; flex-shrink:0;
+  width:36px; height:36px; flex-shrink:0;
   background:var(--orange);
   color:#fff;
   border-radius:8px;
@@ -225,36 +225,36 @@ a{color:inherit;}
 /* =========================================================
    SECTION GROUPS (Uploads / Operational Forms / Reports / External)
    ========================================================= */
-.section-block{padding:18px 0;}
+.section-block{padding:30px 0;}
 .section-block h2{
-  font-size:17px;
+  font-size:20px;
   font-weight:800;
   margin:0 0 4px;
   color:var(--navy);
 }
 .section-block .section-sub{
   color:var(--ink-soft);
-  font-size:12.5px;
-  margin:0 0 12px;
+  font-size:13.5px;
+  margin:0 0 18px;
 }
 
 .card-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:10px;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:14px;
 }
 .link-card{
   background:var(--card-bg);
   border:1px solid var(--line);
   border-radius:10px;
-  padding:10px 12px;
+  padding:16px;
   display:flex;
   align-items:center;
-  gap:9px;
+  gap:12px;
   text-decoration:none;
   color:var(--ink);
   font-weight:600;
-  font-size:13px;
+  font-size:14.5px;
   transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease;
 }
 .link-card:hover, .link-card:focus-visible{
@@ -263,8 +263,8 @@ a{color:inherit;}
   transform:translateY(-2px);
 }
 .link-card .icon-wrap{
-  width:28px; height:28px; flex-shrink:0;
-  border-radius:6px;
+  width:38px; height:38px; flex-shrink:0;
+  border-radius:8px;
   background:#EEF2F5;
   color:var(--navy);
   display:flex; align-items:center; justify-content:center;
