@@ -1,0 +1,313 @@
+/* =====================================================================
+   LI GROUP STAFF PORTAL — STYLESHEET
+   -----------------------------------------------------------------
+   HOW TO EDIT COLOURS
+   All colours are defined once below in :root as CSS variables.
+   Change a value there and it updates everywhere on the site.
+   ===================================================================== */
+
+:root{
+  /* ---- EDIT COLOURS HERE ---- */
+  --navy:        #0F2A43;   /* header, nav, footer */
+  --navy-dark:   #0A1E32;
+  --orange:      #E8792B;   /* primary accent / priority buttons */
+  --orange-dark: #C86419;
+  --green:       #3C8A5B;   /* secondary accent (fresh food / success) */
+  --green-dark:  #2F6E48;
+  --bg:          #F6F7F5;   /* page background */
+  --card-bg:     #FFFFFF;
+  --ink:         #1B2430;   /* main text colour */
+  --ink-soft:    #5B6472;   /* secondary text */
+  --line:        #E2E5E0;
+  --focus:       #1D6FB8;
+  --radius:      12px;
+  --shadow:      0 2px 6px rgba(15,42,67,0.07);
+  --shadow-hover:0 10px 22px rgba(15,42,67,0.14);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  /* System font stack — no external font files to download, keeps the
+     site fast on mobile data. Change here if you later add a web font. */
+  font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%; display:block;}
+a{color:inherit;}
+:focus-visible{outline:3px solid var(--focus); outline-offset:2px;}
+.icon{width:18px; height:18px; flex-shrink:0;}
+
+.container{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 20px;
+}
+
+/* =========================================================
+   HEADER / NAVIGATION
+   ========================================================= */
+.site-header{
+  background:var(--navy);
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 1px 0 rgba(255,255,255,.06);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 20px;
+  max-width:1180px;
+  margin:0 auto;
+}
+.logo-link{display:flex; align-items:center; gap:10px; text-decoration:none;}
+.logo-link img{height:38px; width:auto;}
+
+.main-nav{display:flex; align-items:center;}
+.main-nav ul{
+  display:flex;
+  gap:4px;
+  list-style:none;
+  margin:0; padding:0;
+}
+.main-nav a{
+  display:block;
+  padding:10px 14px;
+  color:#E7ECF1;
+  text-decoration:none;
+  font-size:14.5px;
+  font-weight:600;
+  border-radius:8px;
+}
+.main-nav a:hover, .main-nav a:focus-visible{background:rgba(255,255,255,.09); color:#fff;}
+
+.nav-toggle{
+  display:none;
+  background:none;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+  padding:6px;
+}
+.nav-toggle .icon{width:28px; height:28px;}
+.nav-toggle .icon-close{display:none;}
+.nav-toggle[aria-expanded="true"] .icon-menu{display:none;}
+.nav-toggle[aria-expanded="true"] .icon-close{display:block;}
+
+@media (max-width:820px){
+  .nav-toggle{display:block;}
+  .main-nav{
+    position:absolute;
+    top:100%; left:0; right:0;
+    background:var(--navy-dark);
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+  }
+  .main-nav.open{max-height:420px;}
+  .main-nav ul{flex-direction:column; padding:8px 12px 16px; gap:2px;}
+  .main-nav a{padding:12px 14px;}
+}
+
+/* =========================================================
+   HERO / WELCOME
+   ========================================================= */
+.hero{
+  background:linear-gradient(135deg, var(--navy) 0%, #163C5E 100%);
+  color:#fff;
+  padding:30px 0 22px;
+}
+.hero h1{
+  font-size:clamp(24px,3.6vw,34px);
+  margin:0 0 8px;
+  font-weight:800;
+  letter-spacing:-.01em;
+}
+.hero p{
+  margin:0;
+  max-width:60ch;
+  color:#C9D6E2;
+  font-size:15.5px;
+}
+
+/* =========================================================
+   PRIORITY ACTION BUTTONS (top 4)
+   ========================================================= */
+.priority-section{padding:20px 0 4px;}
+.priority-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:-40px; /* overlaps slightly into hero for a modern layered look */
+  position:relative;
+  z-index:2;
+}
+@media (max-width:900px){
+  .priority-grid{grid-template-columns:repeat(2,1fr); margin-top:-30px;}
+}
+@media (max-width:520px){
+  .priority-grid{grid-template-columns:1fr; margin-top:-20px;}
+}
+
+.priority-card{
+  background:var(--card-bg);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-hover);
+  padding:14px 16px;
+  text-decoration:none;
+  color:var(--ink);
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  border-top:4px solid var(--orange);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.priority-card:nth-child(2){border-top-color:var(--green);}
+.priority-card:nth-child(3){border-top-color:var(--navy);}
+.priority-card:nth-child(4){border-top-color:var(--orange-dark);}
+.priority-card:hover, .priority-card:focus-visible{
+  transform:translateY(-4px);
+  box-shadow:0 16px 30px rgba(15,42,67,.2);
+}
+.priority-card .icon-wrap{
+  width:34px; height:34px;
+  border-radius:8px;
+  background:#FDF0E6;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--orange);
+}
+.priority-card:nth-child(2) .icon-wrap{background:#E9F4EE; color:var(--green);}
+.priority-card:nth-child(3) .icon-wrap{background:#EAF0F6; color:var(--navy);}
+.priority-card:nth-child(4) .icon-wrap{background:#FDF0E6; color:var(--orange-dark);}
+.priority-card .title{font-size:15px; font-weight:700;}
+.priority-card .desc{font-size:12px; color:var(--ink-soft); margin:0;}
+
+/* =========================================================
+   ANNOUNCEMENTS STRIP
+   ========================================================= */
+.announcements{
+  background:#FFF6EC;
+  border:1px solid #F3D9B8;
+  border-radius:var(--radius);
+  margin:18px 0;
+  padding:12px 16px;
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+}
+.announcements .icon-wrap{
+  width:28px; height:28px; flex-shrink:0;
+  background:var(--orange);
+  color:#fff;
+  border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+}
+.announcements h2{
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  margin:0 0 6px;
+  color:var(--orange-dark);
+}
+/* ---- EDIT ANNOUNCEMENTS HERE ----
+   Each announcement is one <li> inside #announcement-list in index.html.
+   Add, edit or delete <li> lines there — no need to touch this CSS file. */
+.announcements ul{margin:0; padding-left:18px; font-size:14px;}
+.announcements li{margin-bottom:4px;}
+.announcements li:last-child{margin-bottom:0;}
+
+/* =========================================================
+   SECTION GROUPS (Uploads / Operational Forms / Reports / External)
+   ========================================================= */
+.section-block{padding:18px 0;}
+.section-block h2{
+  font-size:17px;
+  font-weight:800;
+  margin:0 0 4px;
+  color:var(--navy);
+}
+.section-block .section-sub{
+  color:var(--ink-soft);
+  font-size:12.5px;
+  margin:0 0 12px;
+}
+
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:10px;
+}
+.link-card{
+  background:var(--card-bg);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px 12px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  text-decoration:none;
+  color:var(--ink);
+  font-weight:600;
+  font-size:13px;
+  transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+.link-card:hover, .link-card:focus-visible{
+  border-color:var(--orange);
+  box-shadow:var(--shadow);
+  transform:translateY(-2px);
+}
+.link-card .icon-wrap{
+  width:28px; height:28px; flex-shrink:0;
+  border-radius:6px;
+  background:#EEF2F5;
+  color:var(--navy);
+  display:flex; align-items:center; justify-content:center;
+}
+.link-card .ext-mark{
+  margin-left:auto;
+  font-size:11px;
+  color:var(--ink-soft);
+  font-weight:500;
+  white-space:nowrap;
+}
+.link-card.is-disabled{
+  cursor:default;
+  opacity:.55;
+  pointer-events:none;
+}
+.link-card.is-disabled .ext-mark{
+  color:var(--orange-dark);
+  font-weight:700;
+}
+
+.section-block.alt{background:#FFFFFF;}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer{
+  background:var(--navy);
+  color:#B9C4D0;
+  padding:28px 0;
+  margin-top:20px;
+  font-size:13px;
+}
+.footer-inner{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:14px;
+}
+.site-footer a{color:#fff; text-decoration:underline;}
+.site-footer .helpdesk{font-weight:600; color:#fff;}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  .priority-card, .link-card{transition:none;}
+}
