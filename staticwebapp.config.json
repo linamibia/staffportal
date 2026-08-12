@@ -3,11 +3,15 @@
     {
       "route": "/directors.html",
       "allowedRoles": ["directors"]
+    },
+    {
+      "route": "/hr.html",
+      "allowedRoles": ["hr", "directors"]
     }
   ],
   "responseOverrides": {
     "401": {
-      "redirect": "/.auth/login/aad?post_login_redirect_uri=/directors.html",
+      "redirect": "/.auth/login/aad",
       "statusCode": 302
     }
   }
