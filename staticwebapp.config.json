@@ -1,11 +1,11 @@
 {
   "routes": [
     {
-      "route": "/directors.html",
+      "route": "/directors.html*",
       "allowedRoles": ["directors"]
     },
     {
-      "route": "/hr.html",
+      "route": "/hr.html*",
       "allowedRoles": ["hr", "directors"]
     }
   ],
