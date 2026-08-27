@@ -1,16 +1,16 @@
 {
   "routes": [
     {
-      "route": "/*",
-      "allowedRoles": ["authenticated"]
-    },
-    {
       "route": "/directors.html*",
       "allowedRoles": ["directors"]
     },
     {
       "route": "/hr.html*",
       "allowedRoles": ["hr", "directors"]
+    },
+    {
+      "route": "/*",
+      "allowedRoles": ["authenticated"]
     }
   ],
   "responseOverrides": {
