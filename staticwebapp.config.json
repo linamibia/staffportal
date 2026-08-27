@@ -7,6 +7,10 @@
     {
       "route": "/hr.html*",
       "allowedRoles": ["hr", "directors"]
+    },
+    {
+      "route": "/*",
+      "allowedRoles": ["authenticated"]
     }
   ],
   "responseOverrides": {
