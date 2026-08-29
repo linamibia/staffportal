@@ -311,3 +311,124 @@ a{color:inherit;}
   html{scroll-behavior:auto;}
   .priority-card, .link-card{transition:none;}
 }
+
+/* =========================================================
+   EXECUTIVE DASHBOARD (Directors homepage — directors.html)
+   ========================================================= */
+.exec-header{
+  background:linear-gradient(135deg, var(--navy) 0%, #163C5E 100%);
+  color:#fff;
+  padding:22px 0 18px;
+}
+.exec-header-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.exec-eyebrow{
+  margin:0;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#9FB3C8;
+  font-weight:700;
+}
+.exec-header h1{margin:2px 0 0; font-size:26px; font-weight:800;}
+.exec-user{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+.exec-badge{
+  background:var(--orange);
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  padding:4px 10px;
+  border-radius:999px;
+}
+.exec-username{font-size:14px; color:#E7ECF1; font-weight:600;}
+.exec-btn{
+  background:rgba(255,255,255,.1);
+  color:#fff;
+  text-decoration:none;
+  font-size:13.5px;
+  font-weight:600;
+  padding:8px 14px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,.25);
+}
+.exec-btn:hover, .exec-btn:focus-visible{background:rgba(255,255,255,.18);}
+
+/* KPI strip */
+.kpi-strip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin:-24px 0 22px;
+  position:relative;
+  z-index:2;
+}
+.kpi-card{
+  background:var(--card-bg);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-hover);
+  padding:16px 18px;
+}
+.kpi-label{
+  display:block;
+  font-size:12px;
+  color:var(--ink-soft);
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.03em;
+  margin-bottom:6px;
+}
+.kpi-value{display:block; font-size:22px; font-weight:800; color:var(--navy);}
+.kpi-value.placeholder{color:var(--ink-soft); font-size:14px; font-weight:600;}
+@media (max-width:900px){.kpi-strip{grid-template-columns:repeat(2,1fr); margin-top:-16px;}}
+@media (max-width:520px){.kpi-strip{grid-template-columns:1fr;}}
+
+/* Power BI embed area */
+.bi-embed-wrap{
+  background:var(--card-bg);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  margin-bottom:22px;
+  height:70vh;
+  min-height:480px;
+}
+.bi-embed-wrap iframe{width:100%; height:100%; border:0; display:block;}
+.bi-embed-empty{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  color:var(--ink-soft);
+  font-size:14px;
+  padding:20px;
+  text-align:center;
+}
+@media (max-width:820px){.bi-embed-wrap{height:60vh; min-height:380px;}}
+
+/* Quick links row */
+.exec-quicklinks{margin-bottom:6px;}
+.exec-quicklinks .link-card{font-size:14px;}
+
+/* Collapsed legacy reports section */
+.exec-more{margin-top:6px;}
+.exec-more summary{
+  cursor:pointer;
+  font-weight:700;
+  color:var(--navy);
+  padding:10px 0;
+  list-style:none;
+}
+.exec-more summary::-webkit-details-marker{display:none;}
+.exec-more summary::before{content:"▸ "; color:var(--orange);}
+.exec-more[open] summary::before{content:"▾ "; }
+.exec-more h3{font-size:15px; margin:18px 0 8px; color:var(--navy);}
