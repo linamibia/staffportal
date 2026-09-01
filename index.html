@@ -65,9 +65,9 @@
 <section class="section-block">
   <div class="container">
     <h2>Get started</h2>
-    <p class="section-sub">Jump to a section.</p>
+    <p class="section-sub">Jump to a section, or search the whole site below.</p>
     <div class="search-wrap">
-      <input type="text" id="get-started-search" class="search-input" placeholder="Search..." aria-label="Search Get started cards">
+      <input type="text" id="site-search" class="search-input" placeholder="Search all forms and links..." aria-label="Search the whole site">
     </div>
     <div class="card-grid" id="get-started-grid">
       <a class="link-card internal" href="daily-submissions.html">
@@ -95,7 +95,8 @@
         Payment Request Form
       </a>
     </div>
-    <p id="get-started-no-results" style="display:none; color:var(--ink-soft); margin-top:14px;">No matches. Try a different search term.</p>
+    <div class="card-grid" id="search-results-grid" style="display:none;"></div>
+    <p id="search-no-results" style="display:none; color:var(--ink-soft); margin-top:14px;">No matches. Try a different search term.</p>
   </div>
 </section>
 
@@ -106,6 +107,7 @@
   </div>
 </footer>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="search-data.js"></script>
 <script>
 /* =====================================================================
    LI GROUP STAFF PORTAL - SCRIPT
@@ -135,22 +137,57 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* Note: internal nav links open in the same tab; external links (Forms, Drive, Power BI, banking) open in a new tab. */
 
-  /* ---- Get started search filter (Home page only) ---- */
-  var searchInput = document.getElementById('get-started-search');
-  var searchGrid = document.getElementById('get-started-grid');
-  var noResults = document.getElementById('get-started-no-results');
+  /* ---- Site-wide search (Home page) ---- */
+  var searchInput = document.getElementById('site-search');
+  var ownGrid = document.getElementById('get-started-grid');
+  var resultsGrid = document.getElementById('search-results-grid');
+  var noResults = document.getElementById('search-no-results');
+  var searchData = window.SITE_SEARCH_DATA || [];
 
-  if (searchInput && searchGrid) {
-    var cards = Array.prototype.slice.call(searchGrid.querySelectorAll('.link-card'));
+  function iconSvg() {
+    return '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>';
+  }
+
+  if (searchInput && ownGrid && resultsGrid) {
     searchInput.addEventListener('input', function () {
       var term = searchInput.value.trim().toLowerCase();
-      var visibleCount = 0;
-      cards.forEach(function (card) {
-        var matches = card.textContent.toLowerCase().indexOf(term) !== -1;
-        card.style.display = matches ? '' : 'none';
-        if (matches) visibleCount++;
+
+      if (term === '') {
+        ownGrid.style.display = '';
+        resultsGrid.style.display = 'none';
+        noResults.style.display = 'none';
+        resultsGrid.innerHTML = '';
+        return;
+      }
+
+      var matches = searchData.filter(function (item) {
+        return item.label.toLowerCase().indexOf(term) !== -1;
       });
-      noResults.style.display = visibleCount === 0 ? '' : 'none';
+
+      ownGrid.style.display = 'none';
+      resultsGrid.innerHTML = '';
+
+      if (matches.length === 0) {
+        resultsGrid.style.display = 'none';
+        noResults.style.display = '';
+        return;
+      }
+
+      noResults.style.display = 'none';
+      resultsGrid.style.display = '';
+
+      matches.forEach(function (item) {
+        var a = document.createElement('a');
+        a.className = 'link-card' + (item.internal ? ' internal' : '');
+        a.href = item.url;
+        if (!item.internal) {
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+        }
+        a.innerHTML = '<span class="icon-wrap">' + iconSvg() + '</span>' +
+          '<span>' + item.label + '<br><span style="font-weight:400; font-size:12px; color:var(--ink-soft);">' + item.section + '</span></span>';
+        resultsGrid.appendChild(a);
+      });
     });
   }
 
