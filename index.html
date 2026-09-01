@@ -66,7 +66,10 @@
   <div class="container">
     <h2>Get started</h2>
     <p class="section-sub">Jump to a section.</p>
-    <div class="card-grid">
+    <div class="search-wrap">
+      <input type="text" id="get-started-search" class="search-input" placeholder="Search..." aria-label="Search Get started cards">
+    </div>
+    <div class="card-grid" id="get-started-grid">
       <a class="link-card internal" href="daily-submissions.html">
         <span class="icon-wrap"><img class="icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOCIgaGVpZ2h0PSIyOCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIxLjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CjxwYXRoIGQ9Ik02IDJoOWwzIDN2MTdINnoiLz48cGF0aCBkPSJNMTUgMnYzaDMiLz48cGF0aCBkPSJNOSAxMmg2TTkgMTZoNk05IDhoMyIvPgo8L3N2Zz4K" alt=""></span>
         Daily Submissions
@@ -92,6 +95,7 @@
         Payment Request Form
       </a>
     </div>
+    <p id="get-started-no-results" style="display:none; color:var(--ink-soft); margin-top:14px;">No matches. Try a different search term.</p>
   </div>
 </section>
 
@@ -130,6 +134,25 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* Note: internal nav links open in the same tab; external links (Forms, Drive, Power BI, banking) open in a new tab. */
+
+  /* ---- Get started search filter (Home page only) ---- */
+  var searchInput = document.getElementById('get-started-search');
+  var searchGrid = document.getElementById('get-started-grid');
+  var noResults = document.getElementById('get-started-no-results');
+
+  if (searchInput && searchGrid) {
+    var cards = Array.prototype.slice.call(searchGrid.querySelectorAll('.link-card'));
+    searchInput.addEventListener('input', function () {
+      var term = searchInput.value.trim().toLowerCase();
+      var visibleCount = 0;
+      cards.forEach(function (card) {
+        var matches = card.textContent.toLowerCase().indexOf(term) !== -1;
+        card.style.display = matches ? '' : 'none';
+        if (matches) visibleCount++;
+      });
+      noResults.style.display = visibleCount === 0 ? '' : 'none';
+    });
+  }
 
 });
 

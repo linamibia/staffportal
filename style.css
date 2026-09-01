@@ -296,6 +296,24 @@ a{color:inherit;}
 .link-card.internal:hover, .link-card.internal:focus-visible{
   border-color:var(--navy);
 }
+.search-wrap{
+  margin:2px 0 18px;
+  max-width:360px;
+}
+.search-input{
+  width:100%;
+  padding:10px 14px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  font-size:14.5px;
+  color:var(--ink);
+  background:var(--card-bg);
+}
+.search-input:focus{
+  outline:none;
+  border-color:var(--navy);
+  box-shadow:0 0 0 3px rgba(15,42,67,0.12);
+}
 
 .section-block.alt{background:#FFFFFF;}
 
