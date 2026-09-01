@@ -285,6 +285,17 @@ a{color:inherit;}
   color:var(--orange-dark);
   font-weight:700;
 }
+.link-card.internal{
+  background:#EAF0F6;
+  border-color:#D3E0EC;
+}
+.link-card.internal .icon-wrap{
+  background:var(--navy);
+  color:#FFFFFF;
+}
+.link-card.internal:hover, .link-card.internal:focus-visible{
+  border-color:var(--navy);
+}
 
 .section-block.alt{background:#FFFFFF;}
 
