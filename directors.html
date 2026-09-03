@@ -36,92 +36,23 @@
 </header>
 
 <!-- ============================================================
-     EXECUTIVE HEADER
+     PAGE HEADER
      ============================================================ -->
-<section class="exec-header">
-  <div class="container exec-header-inner">
-    <div>
-      <p class="exec-eyebrow">LI Group</p>
-      <h1>Executive Dashboard</h1>
-    </div>
+<div class="container">
+  <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin:24px 0 4px;">
+    <h1 style="font-size:22px; font-weight:800; color:var(--navy); margin:0;">Directors</h1>
     <div class="exec-user">
-      <span class="exec-badge">Directors Portal</span>
       <span class="exec-username" id="exec-username">Signed in</span>
       <a class="exec-btn" href="index.html">Home</a>
       <a class="exec-btn" href="/.auth/logout">Sign out</a>
     </div>
   </div>
-</section>
+  <p class="section-sub">Restricted access — sign-in required. Contents below are placeholders; replace with real links once each report/document source is confirmed.</p>
+</div>
 
 <div class="container">
 
-  <!-- ============================================================
-       EXECUTIVE KPI STRIP
-       Manual placeholders. If your Power BI report page below
-       already shows these figures, this row can be deleted —
-       it is optional and separate from the embed area.
-       ============================================================ -->
-  <div class="kpi-strip">
-    <div class="kpi-card">
-      <span class="kpi-label">Sales Today</span>
-      <span class="kpi-value placeholder" data-kpi="sales-today">Awaiting data</span>
-    </div>
-    <div class="kpi-card">
-      <span class="kpi-label">Sales MTD vs Target</span>
-      <span class="kpi-value placeholder" data-kpi="sales-mtd">Awaiting data</span>
-    </div>
-    <div class="kpi-card">
-      <span class="kpi-label">Gross Profit %</span>
-      <span class="kpi-value placeholder" data-kpi="gp-pct">Awaiting data</span>
-    </div>
-    <div class="kpi-card">
-      <span class="kpi-label">Cash / Banking Position</span>
-      <span class="kpi-value placeholder" data-kpi="cash-position">Awaiting data</span>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       POWER BI EMBED
-       ---------------------------------------------------------
-       CONFIGURE THIS SECTION — edit the POWER_BI_CONFIG object
-       in the <script> block near the bottom of this file.
-       Do NOT use "Publish to web" links here. Use a report link
-       generated from Power BI: File > Embed report > Embed in a
-       website or portal. That link is signed-in-user aware and
-       respects Power BI licensing, permissions and Row Level
-       Security automatically — no extra token service required.
-       ============================================================ -->
-  <div class="bi-embed-wrap" id="bi-embed-wrap">
-    <div class="bi-embed-empty" id="bi-embed-empty">
-      Power BI report not yet configured.<br>
-      Set <code>workspaceId</code>, <code>reportId</code> and <code>tenantId</code> in the
-      <code>POWER_BI_CONFIG</code> object in directors.html.
-    </div>
-    <iframe id="bi-embed-frame" title="LI Group Executive Power BI Report" style="display:none;" allowfullscreen></iframe>
-  </div>
-
-  <!-- ============================================================
-       EXECUTIVE QUICK LINKS
-       Replace href="#" with the real destination once each is ready.
-       ============================================================ -->
-  <div class="card-grid exec-quicklinks">
-    <a class="link-card is-disabled" href="#" aria-disabled="true">Finance <span class="ext-mark">coming soon</span></a>
-    <a class="link-card is-disabled" href="#" aria-disabled="true">Operations <span class="ext-mark">coming soon</span></a>
-    <a class="link-card is-disabled" href="#" aria-disabled="true">Claims <span class="ext-mark">coming soon</span></a>
-    <a class="link-card is-disabled" href="#" aria-disabled="true">Approvals <span class="ext-mark">coming soon</span></a>
-    <a class="link-card is-disabled" href="#" aria-disabled="true">Corporate Documents <span class="ext-mark">coming soon</span></a>
-    <a class="link-card" href="reports.html">Power BI Reports</a>
-    <a class="link-card" href="index.html">Staff Portal Home</a>
-  </div>
-
-  <!-- ============================================================
-       MORE REPORTS & RESOURCES (previously the full directors.html
-       content) — collapsed by default to keep the dashboard to one
-       screen. Fill these in as each source is confirmed.
-       ============================================================ -->
-  <details class="exec-more">
-    <summary>More Reports &amp; Resources</summary>
-
+  <div>
     <h3>Executive Dashboards</h3>
     <div class="card-grid">
       <a class="link-card is-disabled" href="#" aria-disabled="true">Group Performance Dashboard <span class="ext-mark">coming soon</span></a>
@@ -158,7 +89,7 @@
       <a class="link-card is-disabled" href="#" aria-disabled="true">Supplier &amp; Contract Negotiations <span class="ext-mark">coming soon</span></a>
       <a class="link-card is-disabled" href="#" aria-disabled="true">Annual Strategic Plan <span class="ext-mark">coming soon</span></a>
     </div>
-  </details>
+  </div>
 
 </div>
 
@@ -228,50 +159,5 @@ document.addEventListener('DOMContentLoaded', function () {
 })();
 </script>
 
-<script>
-/* =====================================================================
-   POWER BI EMBED CONFIG
-   ---------------------------------------------------------------------
-   Edit the values below to point at your report. Nothing else in this
-   file needs to change when you swap reports later.
-
-   HOW TO GET A PROPER EMBED URL (do this instead of using a normal
-   "app.powerbi.com/groups/.../reports/..." browser link):
-     Power BI Service > open the report > File > Embed report >
-     "Embed in a website or portal" (not "Publish to web").
-     Copy the reportId, groupId (workspaceId) and ctid (tenantId)
-     out of that generated URL and paste them below.
-   ===================================================================== */
-var POWER_BI_CONFIG = {
-  workspaceId: "92a30a85-78f4-4d4c-a5de-58ff290d97f9",   // TODO confirm this is your intended workspace
-  reportId:    "f28280e9-0dc3-469a-8af4-eaaf4f850daa",   // TODO confirm this is your intended report
-  pageName:    "59093eeed8bd19e23585",                    // Internal Power BI page id (e.g. "Executive Snapshot" page) — leave blank ("") for the report's default page
-  tenantId:    ""                                          // TODO — your Entra ID tenant ID, required for the secure embed link
-};
-
-(function(){
-  var frame = document.getElementById('bi-embed-frame');
-  var empty = document.getElementById('bi-embed-empty');
-  if (!frame || !empty) return;
-
-  if (!POWER_BI_CONFIG.tenantId || !POWER_BI_CONFIG.workspaceId || !POWER_BI_CONFIG.reportId) {
-    return; // leave the "not yet configured" placeholder showing
-  }
-
-  var src = "https://app.powerbi.com/reportEmbed"
-    + "?reportId=" + encodeURIComponent(POWER_BI_CONFIG.reportId)
-    + "&groupId=" + encodeURIComponent(POWER_BI_CONFIG.workspaceId)
-    + "&ctid=" + encodeURIComponent(POWER_BI_CONFIG.tenantId)
-    + "&autoAuth=true";
-
-  if (POWER_BI_CONFIG.pageName) {
-    src += "&pageName=" + encodeURIComponent(POWER_BI_CONFIG.pageName);
-  }
-
-  frame.src = src;
-  frame.style.display = 'block';
-  empty.style.display = 'none';
-})();
-</script>
 </body>
 </html>
