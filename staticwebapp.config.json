@@ -9,6 +9,10 @@
       "allowedRoles": ["hr", "directors"]
     },
     {
+      "route": "/approvals.html*",
+      "allowedRoles": ["approvers", "directors"]
+    },
+    {
       "route": "/*",
       "allowedRoles": ["authenticated"]
     }
