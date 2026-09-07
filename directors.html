@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Executive Dashboard - LI Group Staff Portal</title>
+<title>Directors - LI Group Staff Portal</title>
 <meta name="description" content="Directors-only executive dashboard. Requires sign-in.">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -11,7 +11,6 @@
 <header class="site-header">
   <div class="header-inner">
     <a class="logo-link" href="index.html">
-      <!-- LOGO_IMAGE_PLACEHOLDER: replace assets/logo-placeholder.svg with your real logo file -->
       <img src="data:image/svg+xml;base64,PCEtLSBQTEFDRUhPTERFUiBMT0dPIOKAlCByZXBsYWNlIHRoaXMgZmlsZSB3aXRoIHlvdXIgcmVhbCBMSSBHcm91cCBsb2dvLgogICAgIEtlZXAgdGhlIGZpbGVuYW1lICJsb2dvLXBsYWNlaG9sZGVyLnN2ZyIgT1IgdXBkYXRlIHRoZSBzcmMgaW4gaW5kZXguaHRtbAogICAgIChzZWFyY2ggZm9yIExPR09fSU1BR0VfUExBQ0VIT0xERVIgaW4gaW5kZXguaHRtbCkgdG8gcG9pbnQgYXQgeW91ciBuZXcgZmlsZS4gLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjQ0IiB2aWV3Qm94PSIwIDAgMTYwIDQ0Ij4KICA8cmVjdCB4PSIwIiB5PSIyIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI4IiBmaWxsPSIjRTg3OTJCIi8+CiAgPHRleHQgeD0iMjAiIHk9IjI5IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkxJPC90ZXh0PgogIDx0ZXh0IHg9IjUwIiB5PSIyNyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE3IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMEYyQTQzIj5MSSBHUk9VUDwvdGV4dD4KPC9zdmc+Cg==" alt="LI Group logo" width="160" height="44">
     </a>
 
@@ -28,6 +27,7 @@
         <li><a href="reports.html">Reports</a></li>
         <li><a href="reports.html#resources">Resources</a></li>
         <li><a href="helpdesk.html">Helpdesk</a></li>
+        <li class="role-gated" data-role="finance,directors" style="display:none;"><a href="accounting-and-finance.html">Accounting and Finance</a></li>
         <li class="role-gated" data-role="directors" style="display:none;"><a href="directors.html">Directors</a></li>
         <li class="role-gated" data-role="hr,directors" style="display:none;"><a href="hr.html">HR</a></li>
       </ul>
@@ -35,9 +35,7 @@
   </div>
 </header>
 
-<!-- ============================================================
-     PAGE HEADER
-     ============================================================ -->
+<!-- PAGE HEADER -->
 <div class="container">
   <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin:24px 0 4px;">
     <h1 style="font-size:22px; font-weight:800; color:var(--navy); margin:0;">Directors</h1>
@@ -50,9 +48,10 @@
   <p class="section-sub">Restricted access — sign-in required. Contents below are placeholders; replace with real links once each report/document source is confirmed.</p>
 </div>
 
+<!-- QUICK LINKS -->
 <div class="container">
-
   <div>
+
     <h3>Executive Dashboards</h3>
     <div class="card-grid">
       <a class="link-card is-disabled" href="#" aria-disabled="true">Group Performance Dashboard <span class="ext-mark">coming soon</span></a>
@@ -89,8 +88,24 @@
       <a class="link-card is-disabled" href="#" aria-disabled="true">Supplier &amp; Contract Negotiations <span class="ext-mark">coming soon</span></a>
       <a class="link-card is-disabled" href="#" aria-disabled="true">Annual Strategic Plan <span class="ext-mark">coming soon</span></a>
     </div>
-  </div>
 
+  </div>
+</div>
+
+<!-- EXECUTIVE DASHBOARD -->
+<div class="container">
+  <div style="margin-top:12px;">
+    <h3>Executive Dashboard</h3>
+    <iframe
+      title="LI Retail Operations Dashboard v4.000"
+      width="100%"
+      height="700"
+      style="border:none; border-radius:8px;"
+      src="https://app.powerbi.com/view?r=eyJrIjoiNmY1MDkzM2EtNzJlNy00ZTMxLTgwMDYtZTQxMzkxODUyYmEyIiwidCI6ImZlYzQ4MWE4LWVhZGMtNDkzMi1hMzIzLTlhYzUwYWQyMWNmZiJ9&pageName=95151ead26a6a7a2a83d"
+      frameborder="0"
+      allowFullScreen="true">
+    </iframe>
+  </div>
 </div>
 
 <footer class="site-footer">
