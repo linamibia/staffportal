@@ -6,6 +6,39 @@
 <title>Directors - LI Group Staff Portal</title>
 <meta name="description" content="Directors-only executive dashboard. Requires sign-in.">
 <link rel="stylesheet" href="style.css">
+<style>
+  /* ---- Quick Links tab bar (page-specific; move to style.css later if reused elsewhere) ---- */
+  .quicklinks-tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:20px 0 16px;
+    list-style:none;
+    padding:0;
+  }
+  .quicklinks-tabs button{
+    font:inherit;
+    font-weight:700;
+    font-size:14px;
+    color:var(--navy, #0F2A43);
+    background:#fff;
+    border:1px solid #E2E5EA;
+    border-radius:8px;
+    padding:10px 16px;
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .quicklinks-tabs button:hover{
+    border-color:#E8792B;
+    color:#E8792B;
+  }
+  .quicklinks-tabs button.is-active{
+    background:var(--navy, #0F2A43);
+    border-color:var(--navy, #0F2A43);
+    color:#fff;
+  }
+  .quicklinks-panel[hidden]{ display:none; }
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -52,41 +85,54 @@
 <div class="container">
   <div>
 
-    <h3>Executive Dashboards</h3>
-    <div class="card-grid">
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Group Performance Dashboard <span class="ext-mark">coming soon</span></a>
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Multi-Store Sales Comparison <span class="ext-mark">coming soon</span></a>
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Shrinkage &amp; Fraud Exceptions <span class="ext-mark">coming soon</span></a>
+    <div class="quicklinks-tabs" role="tablist" aria-label="Quick Links categories">
+      <button type="button" role="tab" id="tabbtn-exec" aria-controls="tabpanel-exec" aria-selected="true" class="is-active">Executive Dashboards</button>
+      <button type="button" role="tab" id="tabbtn-fin" aria-controls="tabpanel-fin" aria-selected="false">Financial Reports</button>
+      <button type="button" role="tab" id="tabbtn-board" aria-controls="tabpanel-board" aria-selected="false">Board &amp; Governance</button>
+      <button type="button" role="tab" id="tabbtn-hr" aria-controls="tabpanel-hr" aria-selected="false">HR &amp; Workforce</button>
+      <button type="button" role="tab" id="tabbtn-strategy" aria-controls="tabpanel-strategy" aria-selected="false">Strategy &amp; Planning</button>
     </div>
 
-    <h3>Financial Reports</h3>
-    <div class="card-grid">
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Monthly P&amp;L Statements <span class="ext-mark">coming soon</span></a>
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Cash Flow &amp; Balance Sheet <span class="ext-mark">coming soon</span></a>
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Budget vs Actual <span class="ext-mark">coming soon</span></a>
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Supplier &amp; Creditor Aging <span class="ext-mark">coming soon</span></a>
+    <div class="quicklinks-panel" id="tabpanel-exec" role="tabpanel" aria-labelledby="tabbtn-exec">
+      <div class="card-grid">
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Group Performance Dashboard <span class="ext-mark">coming soon</span></a>
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Multi-Store Sales Comparison <span class="ext-mark">coming soon</span></a>
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Shrinkage &amp; Fraud Exceptions <span class="ext-mark">coming soon</span></a>
+      </div>
     </div>
 
-    <h3>Board &amp; Governance</h3>
-    <div class="card-grid">
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Board Meeting Minutes <span class="ext-mark">coming soon</span></a>
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Shareholder &amp; Compliance Filings <span class="ext-mark">coming soon</span></a>
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Internal Audit Reports <span class="ext-mark">coming soon</span></a>
+    <div class="quicklinks-panel" id="tabpanel-fin" role="tabpanel" aria-labelledby="tabbtn-fin" hidden>
+      <div class="card-grid">
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Monthly P&amp;L Statements <span class="ext-mark">coming soon</span></a>
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Cash Flow &amp; Balance Sheet <span class="ext-mark">coming soon</span></a>
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Budget vs Actual <span class="ext-mark">coming soon</span></a>
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Supplier &amp; Creditor Aging <span class="ext-mark">coming soon</span></a>
+      </div>
     </div>
 
-    <h3>HR &amp; Workforce</h3>
-    <div class="card-grid">
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Payroll Summary <span class="ext-mark">coming soon</span></a>
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Headcount &amp; Turnover <span class="ext-mark">coming soon</span></a>
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Disciplinary &amp; Grievance Log <span class="ext-mark">coming soon</span></a>
-      <a class="link-card" href="https://app.powerbi.com/links/Cbi3hmdOIV?ctid=fec481a8-eadc-4932-a323-9ac50ad21cff&amp;pbi_source=linkShare" target="_blank" rel="noopener">Leave &amp; Attendance Dashboard</a>
+    <div class="quicklinks-panel" id="tabpanel-board" role="tabpanel" aria-labelledby="tabbtn-board" hidden>
+      <div class="card-grid">
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Board Meeting Minutes <span class="ext-mark">coming soon</span></a>
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Shareholder &amp; Compliance Filings <span class="ext-mark">coming soon</span></a>
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Internal Audit Reports <span class="ext-mark">coming soon</span></a>
+      </div>
     </div>
 
-    <h3>Strategy &amp; Planning</h3>
-    <div class="card-grid">
-      <a class="link-card is-disabled" href="#" aria-disabled="true">New Store Feasibility Studies <span class="ext-mark">coming soon</span></a>
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Supplier &amp; Contract Negotiations <span class="ext-mark">coming soon</span></a>
-      <a class="link-card is-disabled" href="#" aria-disabled="true">Annual Strategic Plan <span class="ext-mark">coming soon</span></a>
+    <div class="quicklinks-panel" id="tabpanel-hr" role="tabpanel" aria-labelledby="tabbtn-hr" hidden>
+      <div class="card-grid">
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Payroll Summary <span class="ext-mark">coming soon</span></a>
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Headcount &amp; Turnover <span class="ext-mark">coming soon</span></a>
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Disciplinary &amp; Grievance Log <span class="ext-mark">coming soon</span></a>
+        <a class="link-card" href="https://app.powerbi.com/links/Cbi3hmdOIV?ctid=fec481a8-eadc-4932-a323-9ac50ad21cff&amp;pbi_source=linkShare" target="_blank" rel="noopener">Leave &amp; Attendance Dashboard</a>
+      </div>
+    </div>
+
+    <div class="quicklinks-panel" id="tabpanel-strategy" role="tabpanel" aria-labelledby="tabbtn-strategy" hidden>
+      <div class="card-grid">
+        <a class="link-card is-disabled" href="#" aria-disabled="true">New Store Feasibility Studies <span class="ext-mark">coming soon</span></a>
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Supplier &amp; Contract Negotiations <span class="ext-mark">coming soon</span></a>
+        <a class="link-card is-disabled" href="#" aria-disabled="true">Annual Strategic Plan <span class="ext-mark">coming soon</span></a>
+      </div>
     </div>
 
   </div>
@@ -171,6 +217,37 @@ document.addEventListener('DOMContentLoaded', function () {
       nameEl.textContent = principal.userDetails;
     }
   }).catch(function(){ /* auth endpoint unavailable locally; nav items stay hidden */ });
+})();
+</script>
+
+<script>
+/* =====================================================================
+   QUICK LINKS TABS — click to switch on any device; on desktops with a
+   real mouse, hovering a tab switches it too (touch devices only get
+   click, since they have no true hover).
+   ===================================================================== */
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.quicklinks-tabs button'));
+  if (!tabs.length) return;
+
+  var canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  function activate(tab){
+    tabs.forEach(function(t){
+      var panel = document.getElementById(t.getAttribute('aria-controls'));
+      var isActive = (t === tab);
+      t.classList.toggle('is-active', isActive);
+      t.setAttribute('aria-selected', String(isActive));
+      if (panel) panel.hidden = !isActive;
+    });
+  }
+
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){ activate(tab); });
+    if (canHover) {
+      tab.addEventListener('mouseenter', function(){ activate(tab); });
+    }
+  });
 })();
 </script>
 
