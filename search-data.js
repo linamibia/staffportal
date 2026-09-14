@@ -114,6 +114,12 @@ window.SITE_SEARCH_DATA = [
     "internal": false
   },
   {
+    "label": "Issue Log",
+    "url": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UMDlNN1QyR0ZCTzAxSDlFNzdBNzFFTVZWQS4u",
+    "section": "Daily Submissions",
+    "internal": false
+  },
+  {
     "label": "Temperature Readings",
     "url": "https://forms.office.com/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UNDJLODZGUzZOQ1RaV0c4TFA2RzkzRE9ZNy4u",
     "section": "Daily Submissions",
