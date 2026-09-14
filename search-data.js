@@ -18,6 +18,12 @@ window.SITE_SEARCH_DATA = [
     "internal": true
   },
   {
+    "label": "Training",
+    "url": "training.html",
+    "section": "Home",
+    "internal": true
+  },
+  {
     "label": "Helpdesk & External Services",
     "url": "helpdesk.html",
     "section": "Home",
@@ -198,12 +204,6 @@ window.SITE_SEARCH_DATA = [
     "internal": false
   },
   {
-    "label": "Invoice Archive",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiY2Q5NjA3NzgtYjY1NS00ZjE0LWJkMDktMzA4NTIyNTNiZjViIiwidCI6ImZlYzQ4MWE4LWVhZGMtNDkzMi1hMzIzLTlhYzUwYWQyMWNmZiJ9&pageName=10ad80ab79a0d1d7e196",
-    "section": "Reports & Resources",
-    "internal": false
-  },
-  {
     "label": "Company Policies",
     "url": "https://linamibia.sharepoint.com/:f:/s/StoreOperations/IgC1acbrGn24RoylCp6f7GatAf-wReaek5CB2-oaF-fCYLc?e=qEOzHG",
     "section": "Reports & Resources",
@@ -212,7 +212,13 @@ window.SITE_SEARCH_DATA = [
   {
     "label": "Staff Training (Worktrainer)",
     "url": "https://www.worktrainer.co.za/",
-    "section": "Reports & Resources",
+    "section": "Training",
+    "internal": false
+  },
+  {
+    "label": "OK to Learn",
+    "url": "https://oktolearn.co.za/",
+    "section": "Training",
     "internal": false
   },
   {
