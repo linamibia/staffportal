@@ -6,6 +6,32 @@
 <title>Reports & Resources - LI Group Staff Portal</title>
 <meta name="description" content="Company documents, dashboards and reference material.">
 <link rel="stylesheet" href="style.css">
+<style>
+  /* Reports page only: full-width Power BI embed */
+  .report-embed {
+    width: 100%;
+    margin: 0 0 16px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(15, 42, 67, 0.12);
+  }
+  .report-embed iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;   /* 16:9 report + Power BI page bar */
+    height: auto;
+    min-height: 420px;
+    border: 0;
+  }
+  @media (max-width: 640px) {
+    .report-embed iframe {
+      aspect-ratio: auto;
+      height: 70vh;
+      min-height: 380px;
+    }
+  }
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -47,8 +73,6 @@
 
       <h3 style="font-size:15px; font-weight:700; color:var(--navy); margin:18px 0 8px;">Reports</h3>
 
-      <iframe title="Supplier Invoice Register" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiY2Q5NjA3NzgtYjY1NS00ZjE0LWJkMDktMzA4NTIyNTNiZjViIiwidCI6ImZlYzQ4MWE4LWVhZGMtNDkzMi1hMzIzLTlhYzUwYWQyMWNmZiJ9&pageName=10ad80ab79a0d1d7e196" frameborder="0" allowFullScreen="true"></iframe>
-
       <div class="card-grid">
 
         <a class="link-card" href="https://app.powerbi.com/view?r=eyJrIjoiOWM1OGU2ZmYtZjkwMS00NGNkLTljYmUtOGU3NmYyY2JjMzIzIiwidCI6ImZlYzQ4MWE4LWVhZGMtNDkzMi1hMzIzLTlhYzUwYWQyMWNmZiJ9&pageName=10ad80ab79a0d1d7e196" target="_blank" rel="noopener noreferrer">
@@ -76,6 +100,10 @@
           <span class="ext-mark">coming soon</span>
         </a>
 
+      </div>
+
+      <div class="report-embed" style="margin-top:22px;">
+        <iframe title="Supplier Invoice Register" src="https://app.powerbi.com/view?r=eyJrIjoiY2Q5NjA3NzgtYjY1NS00ZjE0LWJkMDktMzA4NTIyNTNiZjViIiwidCI6ImZlYzQ4MWE4LWVhZGMtNDkzMi1hMzIzLTlhYzUwYWQyMWNmZiJ9&pageName=10ad80ab79a0d1d7e196" frameborder="0" allowFullScreen="true"></iframe>
       </div>
 
     </div>
