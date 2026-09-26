@@ -5,6 +5,10 @@
       "allowedRoles": ["directors"]
     },
     {
+      "route": "/directors-report.html*",
+      "allowedRoles": ["directors"]
+    },
+    {
       "route": "/hr.html*",
       "allowedRoles": ["hr", "directors"]
     },
