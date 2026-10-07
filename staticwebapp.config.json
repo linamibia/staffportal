@@ -6,7 +6,13 @@
     },
     {
       "route": "/directors-report.html*",
-      "allowedRoles": ["directors"]
+      "allowedRoles": ["finance", "directors"],
+      "redirect": "/retail-operations-dashboard.html",
+      "statusCode": 301
+    },
+    {
+      "route": "/retail-operations-dashboard.html*",
+      "allowedRoles": ["finance", "directors"]
     },
     {
       "route": "/hr.html*",
