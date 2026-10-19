@@ -74,9 +74,31 @@
   .quicklinks-panel .link-card .icon-wrap{
     display:none;
   }
+
+  /* Dashboard focus mode: keep the report in the available viewport. */
+  .dashboard-toolbar { display:flex; align-items:center; justify-content:space-between;
+    gap:12px; min-height:40px; padding:4px 12px; box-sizing:border-box;
+    background:#0F2A43; color:#fff; font:13px/1.3 Arial,sans-serif; }
+  .dashboard-toolbar strong { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .dashboard-toolbar button { flex-shrink:0; border:1px solid #b5c7d8; border-radius:5px;
+    padding:5px 10px; background:#fff; color:#0F2A43; font:600 12px/1.3 Arial,sans-serif; cursor:pointer; }
+  .dashboard-toolbar button:focus-visible { outline:3px solid #E8792B; outline-offset:2px; }
+  body.dashboard-focus { margin:0!important; overflow:hidden; }
+  body.dashboard-focus .site-header,
+  body.dashboard-focus .portal-page-header,
+  body.dashboard-focus .site-footer { display:none!important; }
+  body.dashboard-focus .dashboard-toolbar { position:fixed; inset:0 0 auto; height:40px;
+    min-height:0; margin:0; z-index:100; }
+  body.dashboard-focus .report-container { position:fixed; inset:40px 0 0; margin:0!important;
+    padding:0!important; max-width:none!important; width:100%!important; box-sizing:border-box; }
+  body.dashboard-focus .report-frame { margin:0!important; height:100%; }
+  body.dashboard-focus .report-frame iframe { display:block; width:100%; height:100%; border-radius:0!important; }
+  @media (max-width:480px) { .dashboard-toolbar { gap:6px; padding-inline:8px; font-size:11px; }
+    .dashboard-toolbar button { padding-inline:7px; font-size:11px; } }
+
 </style>
 </head>
-<body>
+<body class="dashboard-focus">
 <header class="site-header">
   <div class="header-inner">
     <a class="logo-link" href="index.html">
@@ -108,7 +130,7 @@
 </header>
 
 <!-- PAGE HEADER -->
-<div class="container">
+<div class="container portal-page-header" id="portal-page-header">
   <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin:24px 0 4px;">
     <h1 style="font-size:22px; font-weight:800; color:var(--navy); margin:0;">Retail Operations Dashboard</h1>
     <div class="quicklinks-tabs" style="margin:0;" role="menubar" aria-label="Quick Links categories">
@@ -180,9 +202,14 @@
   </div>
 </div>
 
+<!-- Dashboard controls remain available in focus mode. -->
+<div class="dashboard-toolbar" role="region" aria-label="Dashboard viewing controls">
+  <strong>Retail Operations Dashboard</strong>
+  <button type="button" id="dashboard-focus-toggle" aria-pressed="true" aria-controls="main-nav portal-page-header">Show portal menu</button>
+</div>
 <!-- DIRECTORS REPORT -->
-<div class="container">
-  <div style="margin-top:12px;">
+<div class="container report-container">
+  <div class="report-frame" style="margin-top:12px;">
     <iframe
       title="Retail Operations Dashboard"
       width="100%"
@@ -287,6 +314,33 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   document.addEventListener('click', function(){ closeAll(); });
+})();
+</script>
+
+
+<script>
+(function () {
+  var button = document.getElementById('dashboard-focus-toggle');
+  function setFocusMode(enabled) {
+    if (enabled && document.activeElement &&
+        (document.activeElement.closest('.site-header, .portal-page-header, .site-footer'))) {
+      button.focus();
+    }
+    document.body.classList.toggle('dashboard-focus', enabled);
+    button.textContent = enabled ? 'Show portal menu' : 'Focus on report';
+    button.setAttribute('aria-pressed', String(enabled));
+    window.dispatchEvent(new Event('resize'));
+  }
+  button.addEventListener('click', function () {
+    setFocusMode(!document.body.classList.contains('dashboard-focus'));
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && document.body.classList.contains('dashboard-focus')) {
+      setFocusMode(false);
+      button.focus();
+    }
+  });
+  setFocusMode(true);
 })();
 </script>
 
