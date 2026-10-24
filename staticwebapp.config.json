@@ -2,37 +2,59 @@
   "routes": [
     {
       "route": "/meetings*",
-      "allowedRoles": ["directors"]
+      "allowedRoles": [
+        "anonymous"
+      ]
     },
     {
       "route": "/directors.html*",
-      "allowedRoles": ["directors"]
+      "allowedRoles": [
+        "directors"
+      ]
     },
     {
       "route": "/directors-report.html*",
-      "allowedRoles": ["finance", "directors"],
+      "allowedRoles": [
+        "finance",
+        "directors"
+      ],
       "redirect": "/retail-operations-dashboard.html",
       "statusCode": 301
     },
     {
       "route": "/retail-operations-dashboard.html*",
-      "allowedRoles": ["finance", "directors"]
+      "allowedRoles": [
+        "finance",
+        "directors"
+      ]
     },
     {
       "route": "/hr.html*",
-      "allowedRoles": ["hr", "directors"]
+      "allowedRoles": [
+        "hr",
+        "directors"
+      ]
     },
     {
       "route": "/employee-list.html*",
-      "allowedRoles": ["hr", "directors", "CCTV_Operator"]
+      "allowedRoles": [
+        "hr",
+        "directors",
+        "CCTV_Operator"
+      ]
     },
     {
       "route": "/accounting-and-finance.html*",
-      "allowedRoles": ["finance", "directors"]
+      "allowedRoles": [
+        "finance",
+        "directors"
+      ]
     },
     {
       "route": "/*",
-      "allowedRoles": ["authenticated"]
+      "allowedRoles": [
+        "authenticated"
+      ]
     }
   ],
   "responseOverrides": {
