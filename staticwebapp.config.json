@@ -1,6 +1,10 @@
 {
   "routes": [
     {
+      "route": "/meetings*",
+      "allowedRoles": ["directors"]
+    },
+    {
       "route": "/directors.html*",
       "allowedRoles": ["directors"]
     },
