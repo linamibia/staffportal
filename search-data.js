@@ -126,6 +126,24 @@ window.SITE_SEARCH_DATA = [
     "internal": false
   },
   {
+    "label": "Confidential Employee Voice",
+    "url": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5URVhKWEdKRFlFUzFSNkRKSzI0QldYWEdaSi4u",
+    "section": "Daily Submissions",
+    "internal": false
+  },
+  {
+    "label": "Daily Staff Huddle",
+    "url": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UMVlFUEk3QlFOSkpSMkc3WVRXTzdQM0FFVC4u",
+    "section": "Daily Submissions",
+    "internal": false
+  },
+  {
+    "label": "Additional Huddle Points",
+    "url": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UQzEyOUNMM0ZBUjgxVUVTUTZJWUNQMzRUQi4u",
+    "section": "Daily Submissions",
+    "internal": false
+  },
+  {
     "label": "Temperature Readings",
     "url": "https://forms.office.com/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UNDJLODZGUzZOQ1RaV0c4TFA2RzkzRE9ZNy4u",
     "section": "Daily Submissions",
