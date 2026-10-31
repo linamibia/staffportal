@@ -7,6 +7,12 @@
       ]
     },
     {
+      "route": "/sh-action-centre.html*",
+      "allowedRoles": [
+        "directors"
+      ]
+    },
+    {
       "route": "/directors.html*",
       "allowedRoles": [
         "directors"
