@@ -13,6 +13,12 @@
       ]
     },
     {
+      "route": "/flow-failure-monitoring.html*",
+      "allowedRoles": [
+        "directors"
+      ]
+    },
+    {
       "route": "/directors.html*",
       "allowedRoles": [
         "directors"
