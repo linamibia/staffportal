@@ -63,6 +63,12 @@
       ]
     },
     {
+      "route": "/review-register-compliance.html*",
+      "allowedRoles": [
+        "operations_director"
+      ]
+    },
+    {
       "route": "/*",
       "allowedRoles": [
         "authenticated"
