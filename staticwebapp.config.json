@@ -1,6 +1,13 @@
 {
   "routes": [
     {
+      "route": "/daily-cashup-register.html*",
+      "allowedRoles": [
+        "finance",
+        "directors"
+      ]
+    },
+    {
       "route": "/meetings*",
       "allowedRoles": [
         "directors"
