@@ -62,6 +62,7 @@
 <style id="dashboard-focus-styles">
 .dashboard-toolbar { display:flex; align-items:center; justify-content:space-between; gap:12px; height:40px; padding:4px 12px; box-sizing:border-box; background:#0F2A43; color:white; font:13px/1.3 Arial,sans-serif; }
 .dashboard-toolbar strong { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.dashboard-toolbar a { flex-shrink:0; border:1px solid #b5c7d8; border-radius:5px; padding:5px 10px; background:white; color:#0F2A43; font:600 12px/1.3 Arial,sans-serif; text-decoration:none; }
 .dashboard-toolbar button { flex-shrink:0; border:1px solid #b5c7d8; border-radius:5px; padding:5px 10px; background:white; color:#0F2A43; font:600 12px/1.3 Arial,sans-serif; cursor:pointer; }
 .dashboard-toolbar button:focus-visible { outline:3px solid #E8792B; outline-offset:2px; }
 body.dashboard-focus { margin:0!important; overflow:hidden; }
@@ -104,7 +105,7 @@ body.dashboard-focus .focus-report { display:block!important; width:100%!importa
     </nav>
   </div>
 </header>
-<div class="dashboard-toolbar" role="region" aria-label="Dashboard viewing controls"><strong>Reports &amp; Resources</strong><button type="button" id="dashboard-focus-toggle" aria-expanded="true" aria-controls="main-nav">Show portal menu</button></div>
+<div class="dashboard-toolbar" role="region" aria-label="Dashboard viewing controls"><strong>Reports &amp; Resources</strong><a href="freshmark-claims-register.html">FreshMark Claims Register</a><button type="button" id="dashboard-focus-toggle" aria-expanded="true" aria-controls="main-nav">Show portal menu</button></div>
 
 <section class="section-block focus-path focus-root" id="reports">
   <div class="container focus-path">
@@ -114,6 +115,7 @@ body.dashboard-focus .focus-report { display:block!important; width:100%!importa
     <div id="resources" class="focus-path">
 
       <div class="report-bar">
+        <a class="report-btn" href="freshmark-claims-register.html">FreshMark Claims Register</a>
         <a class="report-btn" href="https://app.powerbi.com/view?r=eyJrIjoiOWM1OGU2ZmYtZjkwMS00NGNkLTljYmUtOGU3NmYyY2JjMzIzIiwidCI6ImZlYzQ4MWE4LWVhZGMtNDkzMi1hMzIzLTlhYzUwYWQyMWNmZiJ9&pageName=10ad80ab79a0d1d7e196" target="_blank" rel="noopener noreferrer">GRV (Quantities) Assessment</a>
         <a class="report-btn" href="https://linamibia.sharepoint.com/:f:/s/StoreOperations/IgC1acbrGn24RoylCp6f7GatAf-wReaek5CB2-oaF-fCYLc?e=qEOzHG" target="_blank" rel="noopener noreferrer">Company Policies</a>
         <a class="report-btn is-disabled" href="#" aria-disabled="true">Operational Procedures <span class="soon">(coming soon)</span></a>
