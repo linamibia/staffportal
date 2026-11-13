@@ -85,7 +85,8 @@
     {
       "route": "/purchase-orders.html",
       "allowedRoles": [
-        "directors"
+        "directors",
+        "purchase_orders"
       ]
     },
     {
