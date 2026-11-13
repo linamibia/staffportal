@@ -83,6 +83,12 @@
       ]
     },
     {
+      "route": "/purchase-orders.html",
+      "allowedRoles": [
+        "directors"
+      ]
+    },
+    {
       "route": "/*",
       "allowedRoles": [
         "authenticated"
