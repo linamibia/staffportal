@@ -22,6 +22,16 @@
   .purchase-panel { display:flex; flex-direction:column; min-width:0; height:var(--purchase-panel-height, calc(100vh - 180px)); }
   .purchase-panel h2 { flex-shrink:0; margin:0 0 8px; color:var(--navy); font-size:18px; font-weight:700; }
   .purchase-panel iframe { display:block; flex:1; min-height:0; width:100%; border:1px solid var(--line); border-radius:var(--radius); background:var(--card-bg); }
+  /* View tabs: form + tracker side by side, or the Power BI tracker on its own */
+  .purchase-intro { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 16px; }
+  .purchase-view-tabs { display:flex; gap:6px; margin:0 0 8px; }
+  .purchase-view-tabs button { padding:8px 14px; border:1px solid #dcdfe3; border-radius:10px; background:#fff; color:var(--navy, #0F2A43); font:700 14px/1.3 inherit; font-family:inherit; cursor:pointer; }
+  .purchase-view-tabs button:hover { border-color:var(--navy, #0F2A43); }
+  .purchase-view-tabs button[aria-pressed="true"] { background:var(--navy, #0F2A43); border-color:var(--navy, #0F2A43); color:#fff; }
+  .purchase-view-tabs button:focus-visible { outline:2px solid #E8792B; outline-offset:2px; }
+  .purchase-panels.tracker-only { grid-template-columns:minmax(0, 1fr); }
+  .purchase-panels.tracker-only .purchase-panel-form { display:none; }
+  .purchase-panels.tracker-only .purchase-panel-tracker { height:max(var(--purchase-panel-height, calc(100vh - 180px)), calc((100vw - 32px) * 0.5625 + 110px)); }
   @media (max-width:999.98px) {
     .purchase-panels { grid-template-columns:minmax(0, 1fr); }
     .purchase-orders { padding:10px 16px; }
@@ -46,6 +56,7 @@
         <li><a href="daily-submissions.html">Daily Submissions</a></li>
         <li><a href="operational-forms.html">Operational Forms</a></li>
         <li><a href="purchase-orders.html" aria-current="page">Purchase Orders</a></li>
+        <li><a href="purchase-orders.html#tracker">Order Tracker</a></li>
         <li><a href="reports.html">Reports</a></li>
         <li><a href="reports.html#resources">Resources</a></li>
         <li><a href="training.html">Training</a></li>
@@ -62,13 +73,17 @@
 <main class="purchase-orders">
   <div class="purchase-intro">
     <h1>Place a Purchase Order</h1>
+    <div class="purchase-view-tabs" role="group" aria-label="Page view">
+      <button type="button" data-view="both" aria-pressed="true">Submit &amp; Track</button>
+      <button type="button" data-view="tracker" aria-pressed="false">Order Tracker only</button>
+    </div>
   </div>
   <div class="purchase-panels">
-    <section class="purchase-panel" aria-labelledby="purchase-form-heading">
+    <section class="purchase-panel purchase-panel-form" aria-labelledby="purchase-form-heading">
       <h2 id="purchase-form-heading">Submit a Purchase Order</h2>
       <iframe title="Submit a Purchase Order" src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=qIHE_tzqMkmjI5rFCtIc_6NCqXHiJcBJs095YDVTnt5UQTlLT1JYVjU4ODVWU0wwN0M3VU5XUEhBNS4u&amp;embed=true"></iframe>
     </section>
-    <section class="purchase-panel" aria-labelledby="purchase-tracker-heading">
+    <section class="purchase-panel purchase-panel-tracker" aria-labelledby="purchase-tracker-heading">
       <h2 id="purchase-tracker-heading">Order Tracker</h2>
       <iframe title="Purchase Order Tracker" src="https://app.powerbi.com/view?r=eyJrIjoiMzAwYzc2NWYtNTU5MS00YzRkLThiMWEtOTIyZTgwZDUxNmY4IiwidCI6ImZlYzQ4MWE4LWVhZGMtNDkzMi1hMzIzLTlhYzUwYWQyMWNmZiJ9&amp;pageName=787f73402b9e80030e4a" allowfullscreen></iframe>
     </section>
@@ -153,6 +168,22 @@ document.addEventListener('DOMContentLoaded', function () {
     observer.observe(document.querySelector('.purchase-intro'));
   }
   sizePanels();
+})();
+</script>
+<script>
+/* View tabs: "Order Tracker only" hides the form and gives the Power BI report the full width.
+   Link straight to it with purchase-orders.html#tracker */
+(function () {
+  var panels = document.querySelector('.purchase-panels');
+  var buttons = document.querySelectorAll('.purchase-view-tabs button');
+  function setView(view) {
+    panels.classList.toggle('tracker-only', view === 'tracker');
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-view') === view)); });
+    if (history.replaceState) history.replaceState(null, '', view === 'tracker' ? '#tracker' : location.pathname + location.search);
+  }
+  buttons.forEach(function (b) { b.addEventListener('click', function () { setView(b.getAttribute('data-view')); }); });
+  if (location.hash === '#tracker') setView('tracker');
+  window.addEventListener('hashchange', function () { setView(location.hash === '#tracker' ? 'tracker' : 'both'); });
 })();
 </script>
 </body>

@@ -96,6 +96,10 @@
   @media (max-width:480px) { .dashboard-toolbar { gap:6px; padding-inline:8px; font-size:11px; }
     .dashboard-toolbar button { padding-inline:7px; font-size:11px; } }
 
+  /* Fill the width: size the report by width (16:9 page + ~80px Power BI bar) and scroll if taller than the screen */
+  body.dashboard-focus .report-container { overflow-y:auto; }
+  body.dashboard-focus .report-frame { height:auto; }
+  body.dashboard-focus .report-frame iframe { height:max(calc(100vh - 40px), calc(100vw * 0.5625 + 80px)); }
 </style>
 </head>
 <body class="dashboard-focus">
@@ -116,6 +120,7 @@
         <li><a href="daily-submissions.html">Daily Submissions</a></li>
         <li><a href="operational-forms.html">Operational Forms</a></li>
         <li><a href="purchase-orders.html">Purchase Orders</a></li>
+        <li><a href="purchase-orders.html#tracker">Order Tracker</a></li>
         <li><a href="reports.html">Reports</a></li>
         <li><a href="reports.html#resources">Resources</a></li>
         <li><a href="training.html">Training</a></li>

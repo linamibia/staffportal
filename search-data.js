@@ -1,5 +1,17 @@
 window.SITE_SEARCH_DATA = [
   {
+    "label": "Place a Purchase Order",
+    "url": "purchase-orders.html",
+    "section": "Home",
+    "internal": true
+  },
+  {
+    "label": "Order Tracker (Purchase Orders)",
+    "url": "purchase-orders.html#tracker",
+    "section": "Home",
+    "internal": true
+  },
+  {
     "label": "Daily Submissions",
     "url": "daily-submissions.html",
     "section": "Home",
