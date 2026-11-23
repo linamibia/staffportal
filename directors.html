@@ -94,7 +94,7 @@ body.dashboard-focus .focus-root { overflow-y:auto!important; }
 body.dashboard-focus .focus-path:not(.focus-root) { height:auto!important; overflow:visible!important; }
 body.dashboard-focus .focus-report { height:max(calc(100vh - 40px), calc(100vw * 0.5625 + 80px))!important; }
 </style>
-</head>
+<script>(function(){fetch("/.auth/me").then(function(r){return r.json();}).then(function(d){var r=(d.clientPrincipal&&d.clientPrincipal.userRoles)||[];if(r.indexOf("store_uploader")!==-1&&r.indexOf("directors")===-1){location.replace("/store-uploads.html");}}).catch(function(){});})();</script></head>
 <body>
 <header class="site-header">
   <div class="header-inner">
