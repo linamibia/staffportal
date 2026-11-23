@@ -15,7 +15,7 @@ main{height:calc(100dvh - 44px)}iframe{width:100%;height:100%;border:0;display:b
 </head>
 <body>
 <nav class="report-toolbar" aria-label="Report navigation">
-<strong>FreshMark Claims Register</strong>
+<strong>FreshMark Claims Register</strong><a class="role-gated" data-role="operations_director" style="display:none;" href="department-photo-audits.html" target="_blank" rel="noopener">Department Photo Audits</a>
 <a id="back-link" href="reports.html#resources">Back</a>
 <a href="reports.html#resources">Show portal menu</a>
 
@@ -33,6 +33,7 @@ main{height:calc(100dvh - 44px)}iframe{width:100%;height:100%;border:0;display:b
   }catch(error){}
 })();
 </script>
+<script>(function(){fetch("/.auth/me").then(function(r){return r.json();}).then(function(d){var roles=(d.clientPrincipal&&d.clientPrincipal.userRoles)||[];document.querySelectorAll(".role-gated").forEach(function(el){var need=el.getAttribute("data-role").split(",");el.style.display=need.some(function(x){return roles.indexOf(x.trim())!==-1;})?"":"none";});}).catch(function(){});})();</script>
 </body>
 </html>
 
