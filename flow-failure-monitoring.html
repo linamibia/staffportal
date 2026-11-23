@@ -28,7 +28,7 @@ iframe { display:block; width:100%; flex:1; min-height:0; border:0; }
 </head>
 <body>
 <nav class="report-nav" aria-label="Report navigation">
-  <strong>Flow Failure Monitoring</strong>
+  <strong>Flow Failure Monitoring</strong><a class="role-gated" data-role="operations_director" style="display:none;" href="department-photo-audits.html" target="_blank" rel="noopener">Department Photo Audits</a>
   <div class="report-nav-links">
     <details class="governance-menu">
       <summary>Board &amp; Governance</summary>
@@ -71,5 +71,6 @@ iframe { display:block; width:100%; flex:1; min-height:0; border:0; }
   });
 })();
 </script>
+<script>(function(){fetch("/.auth/me").then(function(r){return r.json();}).then(function(d){var roles=(d.clientPrincipal&&d.clientPrincipal.userRoles)||[];document.querySelectorAll(".role-gated").forEach(function(el){var need=el.getAttribute("data-role").split(",");el.style.display=need.some(function(x){return roles.indexOf(x.trim())!==-1;})?"":"none";});}).catch(function(){});})();</script>
 </body>
 </html>

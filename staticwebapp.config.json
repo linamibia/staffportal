@@ -39,6 +39,12 @@
       ]
     },
     {
+      "route": "/department-photo-audits.html*",
+      "allowedRoles": [
+        "operations_director"
+      ]
+    },
+    {
       "route": "/directors-report.html*",
       "allowedRoles": [
         "finance",
