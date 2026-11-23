@@ -48,7 +48,8 @@
       "route": "/store-uploads.html*",
       "allowedRoles": [
         "store_uploader",
-        "directors"
+        "directors",
+        "authenticated"
       ]
     },
     {

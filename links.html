@@ -12,7 +12,7 @@
 .source-list a{color:var(--focus); font-weight:600; text-decoration:underline;}
 .source-list .pending{color:var(--ink-soft); font-style:italic; font-weight:400;}
 </style>
-<script>(function(){fetch("/.auth/me").then(function(r){return r.json();}).then(function(d){var r=(d.clientPrincipal&&d.clientPrincipal.userRoles)||[];if(r.indexOf("store_uploader")!==-1&&r.indexOf("directors")===-1){location.replace("/store-uploads.html");}}).catch(function(){});})();</script></head>
+<script>(function(){fetch("/.auth/me").then(function(r){return r.json();}).then(function(d){var r=(d.clientPrincipal&&d.clientPrincipal.userRoles)||[];var u=((d.clientPrincipal&&d.clientPrincipal.userDetails)||"").toLowerCase();if((r.indexOf("store_uploader")!==-1||u.indexOf("photos.")===0)&&r.indexOf("directors")===-1){location.replace("/store-uploads.html");}}).catch(function(){});})();</script></head>
 <body>
 <header class="site-header">
   <div class="header-inner">
