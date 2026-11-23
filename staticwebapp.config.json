@@ -45,6 +45,13 @@
       ]
     },
     {
+      "route": "/store-uploads.html*",
+      "allowedRoles": [
+        "store_uploader",
+        "directors"
+      ]
+    },
+    {
       "route": "/directors-report.html*",
       "allowedRoles": [
         "finance",

@@ -25,7 +25,7 @@ iframe { display:block; width:100%; flex:1; min-height:0; border:0; }
 .governance-links a { border:0; }
 .governance-links a[aria-current="page"] { background:#edf3f8; }
 </style>
-</head>
+<script>(function(){fetch("/.auth/me").then(function(r){return r.json();}).then(function(d){var r=(d.clientPrincipal&&d.clientPrincipal.userRoles)||[];if(r.indexOf("store_uploader")!==-1&&r.indexOf("directors")===-1){location.replace("/store-uploads.html");}}).catch(function(){});})();</script></head>
 <body>
 <nav class="report-nav" aria-label="Report navigation">
   <strong>Review Register Compliance</strong><a class="role-gated" data-role="operations_director" style="display:none;background:#fff;color:#0F2A43;padding:5px 10px;border:1px solid #b5c7d8;border-radius:5px;text-decoration:none;font-weight:600;font-size:13px;white-space:nowrap;" href="department-photo-audits.html" target="_blank" rel="noopener">Department Photo Audits</a>

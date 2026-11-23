@@ -21,7 +21,7 @@ body.dashboard-focus .focus-root { position:fixed!important; inset:40px 0 0!impo
 body.dashboard-focus .focus-report { display:block!important; width:100%!important; height:100%!important; border:0!important; border-radius:0!important; margin:0!important; }
 @media(max-width:480px) { .dashboard-toolbar { gap:6px; padding-inline:8px; font-size:11px; } .dashboard-toolbar button { font-size:11px; padding-inline:7px; } }
 </style>
-</head>
+<script>(function(){fetch("/.auth/me").then(function(r){return r.json();}).then(function(d){var r=(d.clientPrincipal&&d.clientPrincipal.userRoles)||[];if(r.indexOf("store_uploader")!==-1&&r.indexOf("directors")===-1){location.replace("/store-uploads.html");}}).catch(function(){});})();</script></head>
 <body>
 <header class="site-header">
   <div class="header-inner">
