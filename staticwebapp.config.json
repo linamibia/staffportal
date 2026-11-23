@@ -41,7 +41,7 @@
     {
       "route": "/department-photo-audits.html*",
       "allowedRoles": [
-        "directors"
+        "operations_director"
       ]
     },
     {
