@@ -15,7 +15,7 @@ body { display:flex; flex-direction:column; }
 .report-nav a:focus-visible { outline:3px solid #E8792B; outline-offset:2px; }
 iframe { display:block; width:100%; flex:1; min-height:0; border:0; }
 </style>
-<script>(function(){fetch("/.auth/me").then(function(r){return r.json();}).then(function(d){var r=(d.clientPrincipal&&d.clientPrincipal.userRoles)||[];if(r.indexOf("store_uploader")!==-1&&r.indexOf("directors")===-1){location.replace("/store-uploads.html");}}).catch(function(){});})();</script></head>
+<script>(function(){fetch("/.auth/me").then(function(r){return r.json();}).then(function(d){var r=(d.clientPrincipal&&d.clientPrincipal.userRoles)||[];var u=((d.clientPrincipal&&d.clientPrincipal.userDetails)||"").toLowerCase();if((r.indexOf("store_uploader")!==-1||u.indexOf("photos.")===0)&&r.indexOf("directors")===-1){location.replace("/store-uploads.html");}}).catch(function(){});})();</script></head>
 <body>
 <nav class="report-nav" aria-label="Report navigation">
   <strong>Department Photo Audits</strong>
