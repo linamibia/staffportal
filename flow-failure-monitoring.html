@@ -28,7 +28,7 @@ iframe { display:block; width:100%; flex:1; min-height:0; border:0; }
 <script>(function(){fetch("/.auth/me").then(function(r){return r.json();}).then(function(d){var r=(d.clientPrincipal&&d.clientPrincipal.userRoles)||[];var u=((d.clientPrincipal&&d.clientPrincipal.userDetails)||"").toLowerCase();if((r.indexOf("store_uploader")!==-1||u.indexOf("photos.")===0)&&r.indexOf("directors")===-1){location.replace("/store-uploads.html");}}).catch(function(){});})();</script></head>
 <body>
 <nav class="report-nav" aria-label="Report navigation">
-  <strong>Flow Failure Monitoring</strong><a class="role-gated" data-role="operations_director" style="display:none;background:#fff;color:#0F2A43;padding:5px 10px;border:1px solid #b5c7d8;border-radius:5px;text-decoration:none;font-weight:600;font-size:13px;white-space:nowrap;" href="department-photo-audits.html" target="_blank" rel="noopener">Department Photo Audits</a>
+  <strong>Flow Failure Monitoring</strong><a class="role-gated" data-role="operations_director,photo_audits" style="display:none;background:#fff;color:#0F2A43;padding:5px 10px;border:1px solid #b5c7d8;border-radius:5px;text-decoration:none;font-weight:600;font-size:13px;white-space:nowrap;" href="department-photo-audits.html" target="_blank" rel="noopener">Department Photo Audits</a>
   <div class="report-nav-links">
     <details class="governance-menu">
       <summary>Board &amp; Governance</summary>
