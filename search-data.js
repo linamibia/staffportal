@@ -30,6 +30,12 @@ window.SITE_SEARCH_DATA = [
     "internal": true
   },
   {
+    "label": "Payments",
+    "url": "payments.html",
+    "section": "Home",
+    "internal": true
+  },
+  {
     "label": "Training",
     "url": "training.html",
     "section": "Home",
